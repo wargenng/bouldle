@@ -19,6 +19,20 @@ function App() {
     };
 
     const submitGuess = () => {
+        let blur = document.getElementById("climb-image");
+        const blurAmount =
+            "blur(" +
+            (32 -
+                4 *
+                    [
+                        ...guesses(),
+                        climbData.climbs[
+                            climbData.climbs
+                                .map((climb) => climb.route.toLowerCase())
+                                .indexOf(searchInput())
+                        ].route,
+                    ].length) +
+            "px)";
         if (
             !climbData.climbs
                 .map((climb) => climb.route.toLowerCase())
@@ -40,31 +54,27 @@ function App() {
                         .indexOf(searchInput())
                 ].route,
             ]);
-            document.getElementById("climb-image").style.filter =
-                "blur(" +
-                (32 -
-                    4 *
-                        [
-                            ...guesses(),
-                            climbData.climbs[
-                                climbData.climbs
-                                    .map((climb) => climb.route.toLowerCase())
-                                    .indexOf(searchInput())
-                            ].route,
-                        ].length) +
-                "px)";
+            blur.style.filter = blurAmount;
         }
 
         if (
             climbData.climbs[currentDay].route.toLowerCase() === searchInput()
         ) {
-            document.getElementById("climb-image").style.filter = "0px";
+            blur.style.filter = "blur(0px)";
+            document.getElementById("submit-button").style.pointerEvents =
+                "none";
+            document.getElementById("submit-button").style.filter =
+                "brightness(.5)";
             alert("YOU WON");
         } else if (guesses().length === 8) {
-            document.getElementById("climb-image").style.filter = "0px";
+            blur.style.filter = "blur(0px)";
+            document.getElementById("submit-button").style.pointerEvents =
+                "none";
             alert(
                 "YOU LOSE! Answer Was: " + climbData.climbs[currentDay].route
             );
+            document.getElementById("submit-button").style.filter =
+                "brightness(.5)";
         }
         document.getElementById("input-climbs").value = "";
     };
@@ -83,7 +93,8 @@ function App() {
                     </div>
                 </div>
                 <div class="w-full flex justify-start p-3 text-lg font-bold">
-                    Guess {guesses().length + 1} of 8
+                    Guess {guesses().length + 1 < 9 ? guesses().length + 1 : 8}{" "}
+                    of 8
                 </div>
                 <div class="flex gap-2">
                     <input
@@ -93,6 +104,7 @@ function App() {
                         onChange={handleChange}
                     />
                     <button
+                        id="submit-button"
                         class="bg-slate-500 text-white py-3 px-4 rounded-lg"
                         onclick={submitGuess}
                     >
