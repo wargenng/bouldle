@@ -41,6 +41,9 @@ export default function Guess(props) {
                     class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-lg font-bold ${
                         currentDay.length === guess.length
                             ? "bg-green-600"
+                            : currentDay.length + 2 > guess.length &&
+                              currentDay.length - 2 < guess.length
+                            ? "bg-yellow-400"
                             : "bg-slate-500"
                     }`}
                 >
@@ -66,6 +69,9 @@ export default function Guess(props) {
                     class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-lg font-bold ${
                         currentDay.stars === guess.stars
                             ? "bg-green-600"
+                            : currentDay.stars + 0.5 > guess.stars &&
+                              currentDay.stars - 0.5 < guess.stars
+                            ? "bg-yellow-400"
                             : "bg-slate-500"
                     }`}
                 >
@@ -76,6 +82,9 @@ export default function Guess(props) {
                     class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-lg font-bold ${
                         currentDay.votes === guess.votes
                             ? "bg-green-600"
+                            : currentDay.votes + 50 > guess.votes &&
+                              currentDay.votes - 50 < guess.votes
+                            ? "bg-yellow-400"
                             : "bg-slate-500"
                     }`}
                 >

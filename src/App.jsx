@@ -42,7 +42,7 @@ function App() {
             ]);
             document.getElementById("climb-image").style.filter =
                 "blur(" +
-                (40 -
+                (32 -
                     4 *
                         [
                             ...guesses(),
