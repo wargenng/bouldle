@@ -40,14 +40,31 @@ function App() {
                         .indexOf(searchInput())
                 ].route,
             ]);
+            document.getElementById("climb-image").style.filter =
+                "blur(" +
+                (40 -
+                    4 *
+                        [
+                            ...guesses(),
+                            climbData.climbs[
+                                climbData.climbs
+                                    .map((climb) => climb.route.toLowerCase())
+                                    .indexOf(searchInput())
+                            ].route,
+                        ].length) +
+                "px)";
         }
 
         if (
             climbData.climbs[currentDay].route.toLowerCase() === searchInput()
         ) {
+            document.getElementById("climb-image").style.filter = "0px";
             alert("YOU WON");
         } else if (guesses().length === 8) {
-            alert("YOU LOSE");
+            document.getElementById("climb-image").style.filter = "0px";
+            alert(
+                "YOU LOSE! Answer Was: " + climbData.climbs[currentDay].route
+            );
         }
         document.getElementById("input-climbs").value = "";
     };
@@ -59,6 +76,7 @@ function App() {
                 <div class="w-full flex items-center justify-center pb-4">
                     <div class="h-72 w-72 overflow-hidden flex items-center justify-center object-cover border-black border-4">
                         <img
+                            id="climb-image"
                             class="w-full h-full blur-2xl"
                             src={climbData.climbs[currentDay].image}
                         />
