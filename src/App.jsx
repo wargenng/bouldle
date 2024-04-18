@@ -7,6 +7,7 @@ import Guess from "./guess";
 function App() {
     const [searchInput, setSearchInput] = createSignal("");
     const [guesses, setGuesses] = createSignal([]);
+    const blurAmountList = [25, 10, 5, 4, 3, 2, 1, 0];
 
     const currentDay = Math.abs(
         Math.round(
@@ -20,19 +21,8 @@ function App() {
 
     const submitGuess = () => {
         let blur = document.getElementById("climb-image");
-        const blurAmount =
-            "blur(" +
-            (70 -
-                10 *
-                    [
-                        ...guesses(),
-                        climbData.climbs[
-                            climbData.climbs
-                                .map((climb) => climb.route.toLowerCase())
-                                .indexOf(searchInput())
-                        ].route,
-                    ].length) +
-            "px)";
+        const blurNumber = blurAmountList[guesses().length];
+        const blurAmount = "blur(" + (blurNumber > 0 ? blurNumber : 0) + "px)";
         if (
             !climbData.climbs
                 .map((climb) => climb.route.toLowerCase())
@@ -87,7 +77,7 @@ function App() {
                     <div class="h-72 w-72 overflow-hidden flex items-center justify-center object-cover border-black border-4">
                         <img
                             id="climb-image"
-                            class="w-full h-full blur-3xl"
+                            class="w-full h-full blur-2xl"
                             src={climbData.climbs[currentDay].image}
                         />
                     </div>
