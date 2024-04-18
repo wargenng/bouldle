@@ -44,7 +44,7 @@ export default function Guess(props) {
                             ? "bg-green-600"
                             : currentDay.length + 2 > guess.length &&
                               currentDay.length - 2 < guess.length
-                            ? "bg-yellow-400"
+                            ? "bg-yellow-500"
                             : "bg-slate-500"
                     }`}
                 >
@@ -66,7 +66,7 @@ export default function Guess(props) {
                                   currentDay.latitude,
                                   currentDay.longitude
                               ).distance < 250
-                            ? "bg-yellow-400"
+                            ? "bg-yellow-500"
                             : "bg-slate-500"
                     }`}
                 >
@@ -101,7 +101,7 @@ export default function Guess(props) {
                             ? "bg-green-600"
                             : currentDay.stars + 0.5 > guess.stars &&
                               currentDay.stars - 0.5 < guess.stars
-                            ? "bg-yellow-400"
+                            ? "bg-yellow-500"
                             : "bg-slate-500"
                     }`}
                 >
@@ -114,7 +114,7 @@ export default function Guess(props) {
                             ? "bg-green-600"
                             : currentDay.votes + 50 > guess.votes &&
                               currentDay.votes - 50 < guess.votes
-                            ? "bg-yellow-400"
+                            ? "bg-yellow-500"
                             : "bg-slate-500"
                     }`}
                 >
