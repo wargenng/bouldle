@@ -49,7 +49,7 @@ export default function Guess(props) {
                     }`}
                 >
                     <h1>length</h1>
-                    <p>{guess.length} ft</p>
+                    <p>{guess.length === "" ? "N/A" : guess.length + "ft"}</p>
                 </div>
                 <div
                     class={`grow p-2 rounded-lg flex flex-col items-center text-lg font-bold ${

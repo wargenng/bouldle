@@ -82,6 +82,9 @@ function App() {
                         />
                     </div>
                 </div>
+                <div class="w-full flex justify-start p-3 text-lg font-bold">
+                    Guess {guesses().length + 1} of 8
+                </div>
                 <div class="flex gap-2">
                     <input
                         list="list-of-climbs"
