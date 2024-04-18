@@ -2,6 +2,7 @@ import { createEffect, createSignal } from "solid-js";
 import { getCurrentDateFormattedAsInt } from "./components/getCurrentDateFormattedAsInt";
 import { random } from "./components/random";
 import climbData from "../scripts/data.json";
+import Guess from "./guess";
 
 function App() {
     const [searchInput, setSearchInput] = createSignal("");
@@ -24,7 +25,11 @@ function App() {
                 .includes(searchInput())
         ) {
             alert("not in list of climbs");
-        } else if (guesses().includes(searchInput())) {
+        } else if (
+            guesses()
+                .map((guess) => guess.toLowerCase())
+                .includes(searchInput())
+        ) {
             alert("already guessed climb");
         } else {
             setGuesses([
@@ -78,10 +83,14 @@ function App() {
                         ))}
                     </datalist>
                 </div>
-                <div>
-                    {guesses().map((guess) => (
-                        <div class="flex">{guess}</div>
-                    ))}
+                <div class="py-4">
+                    {guesses()
+                        .map((guess) => (
+                            <>
+                                <Guess guess={guess} />
+                            </>
+                        ))
+                        .reverse()}
                 </div>
             </div>
         </div>
