@@ -1,6 +1,7 @@
 import climbData from "../scripts/data.json";
 import { random } from "./components/random";
 import { getCurrentDateFormattedAsInt } from "./components/getCurrentDateFormattedAsInt";
+import { haversine } from "./components/haversine";
 
 export default function Guess(props) {
     const guess =
@@ -50,8 +51,37 @@ export default function Guess(props) {
                     <h1>length</h1>
                     <p>{guess.length} ft</p>
                 </div>
-                <div class="bg-slate-500 grow p-2 rounded-lg flex flex-col items-center text-lg font-bold">
-                    distance
+                <div
+                    class={`grow p-2 rounded-lg flex flex-col items-center text-lg font-bold ${
+                        haversine(
+                            guess.latitude,
+                            guess.longitude,
+                            currentDay.latitude,
+                            currentDay.longitude
+                        ).distance === 0
+                            ? "bg-green-600"
+                            : haversine(
+                                  guess.latitude,
+                                  guess.longitude,
+                                  currentDay.latitude,
+                                  currentDay.longitude
+                              ).distance < 250
+                            ? "bg-yellow-400"
+                            : "bg-slate-500"
+                    }`}
+                >
+                    <div>distance</div>
+                    <div>
+                        {
+                            haversine(
+                                guess.latitude,
+                                guess.longitude,
+                                currentDay.latitude,
+                                currentDay.longitude
+                            ).distance
+                        }{" "}
+                        m
+                    </div>
                 </div>
             </div>
             <div class="flex gap-3 w-full h-24">
