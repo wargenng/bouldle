@@ -9,8 +9,8 @@ export default function Guess(props) {
     return (
         <div class="text-white text-center mb-5">
             <div class="flex items-center gap-4 mb-5">
-                <div class="h-24 w-24 rounded-full overflow-hidden">
-                    <img src={guess.image} />
+                <div class="h-24 w-24 rounded-full overflow-hidden object-cover">
+                    <img src={guess.image} class="w-full h-full" />
                 </div>
                 <p class="text-2xl text-black font-bold">{guess.route}</p>
             </div>

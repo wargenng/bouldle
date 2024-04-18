@@ -59,7 +59,7 @@ function App() {
                 <div class="w-full flex items-center justify-center pb-4">
                     <div class="h-72 w-72 overflow-hidden flex items-center justify-center object-cover border-black border-4">
                         <img
-                            class="w-full h-auto blur-2xl"
+                            class="w-full h-full blur-2xl"
                             src={climbData.climbs[currentDay].image}
                         />
                     </div>
