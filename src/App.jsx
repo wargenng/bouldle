@@ -22,8 +22,8 @@ function App() {
         let blur = document.getElementById("climb-image");
         const blurAmount =
             "blur(" +
-            (32 -
-                4 *
+            (70 -
+                10 *
                     [
                         ...guesses(),
                         climbData.climbs[
@@ -87,14 +87,13 @@ function App() {
                     <div class="h-72 w-72 overflow-hidden flex items-center justify-center object-cover border-black border-4">
                         <img
                             id="climb-image"
-                            class="w-full h-full blur-2xl"
+                            class="w-full h-full blur-3xl"
                             src={climbData.climbs[currentDay].image}
                         />
                     </div>
                 </div>
                 <div class="w-full flex justify-start p-3 text-lg font-bold">
-                    Guess {guesses().length + 1 < 9 ? guesses().length + 1 : 8}{" "}
-                    of 8
+                    Guess {guesses().length < 8 ? guesses().length + 1 : 8} of 8
                 </div>
                 <div class="flex gap-2">
                     <input
