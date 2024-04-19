@@ -11,8 +11,8 @@ export function haversine(lat1, lon1, lat2, lon2) {
         Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distanceMeters = R * c; // Distance in meters
-    const distanceFeet = distanceMeters * 3.28084; // Convert meters to feet
-    const roundedDistance = Math.round(distanceFeet); // Round to nearest whole number
+    const distanceFeet = (distanceMeters * 3.28084) / 5280; // Convert meters to miles
+    const roundedDistance = Math.round(distanceFeet * 10) / 10; // Round to nearest whole number
 
     // Calculate direction
     const y = Math.sin(Δλ) * Math.cos(φ2);
@@ -23,21 +23,21 @@ export function haversine(lat1, lon1, lat2, lon2) {
     let direction = "";
 
     if (θ >= -22.5 && θ < 22.5) {
-        direction = "▶";
+        direction = "E";
     } else if (θ >= 22.5 && θ < 67.5) {
-        direction = "◥";
+        direction = "NE";
     } else if (θ >= 67.5 && θ < 112.5) {
-        direction = "▲";
+        direction = "N";
     } else if (θ >= 112.5 && θ < 157.5) {
-        direction = "◤";
+        direction = "NW";
     } else if ((θ >= 157.5 && θ <= 180) || (θ < -157.5 && θ >= -180)) {
-        direction = "◀";
+        direction = "W";
     } else if (θ >= -157.5 && θ < -112.5) {
-        direction = "◣";
+        direction = "SW";
     } else if (θ >= -112.5 && θ < -67.5) {
-        direction = "▼";
+        direction = "S";
     } else if (θ >= -67.5 && θ < -22.5) {
-        direction = "◢";
+        direction = "SE";
     }
 
     return { distance: roundedDistance, direction };

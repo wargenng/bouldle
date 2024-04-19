@@ -10,13 +10,10 @@ export default function Guess(props) {
             climbData.climbs.map((climb) => climb.route).indexOf(props.guess)
         ];
 
-    const currentDay =
+    const todaysClimb =
         climbData.climbs[
-            Math.abs(
-                Math.round(
-                    random(getCurrentDateFormattedAsInt()) *
-                        climbData.climbs.length
-                )
+            Math.floor(
+                random(getCurrentDateFormattedAsInt()) * climbData.climbs.length
             )
         ];
 
@@ -24,17 +21,17 @@ export default function Guess(props) {
         <div class="text-white text-center mb-5">
             <div class="flex items-center gap-4 mb-5">
                 <div class="h-24 w-24 rounded-full overflow-hidden object-cover">
-                    <img src={guess.image} class="w-full h-full" />
+                    <img src={guess.image} class="min-w-full" />
                 </div>
                 <p class="text-2xl text-black font-bold">{guess.route}</p>
             </div>
             <div class="flex gap-3 mb-3 h-24">
                 <div
                     class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
-                        currentDay.grade === guess.grade
+                        todaysClimb.grade === guess.grade
                             ? "bg-green-600"
                             : Math.abs(
-                                  gradeData.grades.indexOf(currentDay.grade) -
+                                  gradeData.grades.indexOf(todaysClimb.grade) -
                                       gradeData.grades.indexOf(guess.grade)
                               ) <= 4
                             ? "bg-yellow-500"
@@ -44,9 +41,9 @@ export default function Guess(props) {
                     <h1>grade</h1>
                     <p class="text-2xl">
                         {guess.grade}{" "}
-                        {currentDay.grade !== guess.grade
+                        {todaysClimb.grade !== guess.grade
                             ? gradeData.grades.indexOf(guess.grade) <
-                              gradeData.grades.indexOf(currentDay.grade)
+                              gradeData.grades.indexOf(todaysClimb.grade)
                                 ? "▲"
                                 : "▼"
                             : ""}
@@ -54,10 +51,10 @@ export default function Guess(props) {
                 </div>
                 <div
                     class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
-                        currentDay.length === guess.length
+                        todaysClimb.length === guess.length
                             ? "bg-green-600"
-                            : currentDay.length + 2 > guess.length &&
-                              currentDay.length - 2 < guess.length
+                            : todaysClimb.length + 2 > guess.length &&
+                              todaysClimb.length - 2 < guess.length
                             ? "bg-yellow-500"
                             : "bg-slate-500"
                     }`}
@@ -65,11 +62,11 @@ export default function Guess(props) {
                     <h1>length</h1>
                     <p class="text-2xl">
                         {guess.length === "" ? "N/A" : guess.length + " ft"}{" "}
-                        {currentDay.length === "" ||
-                        currentDay.length === guess.length ||
+                        {todaysClimb.length === "" ||
+                        todaysClimb.length === guess.length ||
                         guess.length === ""
                             ? ""
-                            : guess.length < currentDay.length
+                            : guess.length < todaysClimb.length
                             ? "▲"
                             : "▼"}
                     </p>
@@ -79,42 +76,42 @@ export default function Guess(props) {
                         haversine(
                             guess.latitude,
                             guess.longitude,
-                            currentDay.latitude,
-                            currentDay.longitude
+                            todaysClimb.latitude,
+                            todaysClimb.longitude
                         ).distance === 0
                             ? "bg-green-600"
                             : haversine(
                                   guess.latitude,
                                   guess.longitude,
-                                  currentDay.latitude,
-                                  currentDay.longitude
+                                  todaysClimb.latitude,
+                                  todaysClimb.longitude
                               ).distance < 250
                             ? "bg-yellow-500"
                             : "bg-slate-500"
                     }`}
                 >
                     <div>distance</div>
-                    <div class="text-lg">
+                    <div class="text-2xl">
                         {
                             haversine(
                                 guess.latitude,
                                 guess.longitude,
-                                currentDay.latitude,
-                                currentDay.longitude
+                                todaysClimb.latitude,
+                                todaysClimb.longitude
                             ).distance
                         }{" "}
-                        ft{" "}
+                        mi{" "}
                         {haversine(
                             guess.latitude,
                             guess.longitude,
-                            currentDay.latitude,
-                            currentDay.longitude
+                            todaysClimb.latitude,
+                            todaysClimb.longitude
                         ).distance > 0
                             ? haversine(
                                   guess.latitude,
                                   guess.longitude,
-                                  currentDay.latitude,
-                                  currentDay.longitude
+                                  todaysClimb.latitude,
+                                  todaysClimb.longitude
                               ).direction
                             : ""}
                     </div>
@@ -123,7 +120,7 @@ export default function Guess(props) {
             <div class="flex gap-3 w-full h-24">
                 <div
                     class={`w-1/2 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
-                        currentDay.area === guess.area
+                        todaysClimb.area === guess.area
                             ? "bg-green-600"
                             : "bg-slate-500"
                     }`}
@@ -133,10 +130,10 @@ export default function Guess(props) {
                 </div>
                 <div
                     class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
-                        currentDay.stars === guess.stars
+                        todaysClimb.stars === guess.stars
                             ? "bg-green-600"
-                            : guess.stars < currentDay.stars + 0.5 &&
-                              guess.stars > currentDay.stars - 0.5
+                            : guess.stars < todaysClimb.stars + 0.5 &&
+                              guess.stars > todaysClimb.stars - 0.5
                             ? "bg-yellow-500"
                             : "bg-slate-500"
                     }`}
@@ -144,8 +141,8 @@ export default function Guess(props) {
                     <h1>stars</h1>
                     <p class="text-2xl">
                         {guess.stars}{" "}
-                        {currentDay.stars !== guess.stars
-                            ? guess.stars < currentDay.stars
+                        {todaysClimb.stars !== guess.stars
+                            ? guess.stars < todaysClimb.stars
                                 ? "▲"
                                 : "▼"
                             : ""}
@@ -153,10 +150,10 @@ export default function Guess(props) {
                 </div>
                 <div
                     class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
-                        currentDay.votes === guess.votes
+                        todaysClimb.votes === guess.votes
                             ? "bg-green-600"
-                            : currentDay.votes + 50 > guess.votes &&
-                              currentDay.votes - 50 < guess.votes
+                            : todaysClimb.votes + 50 > guess.votes &&
+                              todaysClimb.votes - 50 < guess.votes
                             ? "bg-yellow-500"
                             : "bg-slate-500"
                     }`}
@@ -164,8 +161,8 @@ export default function Guess(props) {
                     <h1>votes</h1>
                     <p class="text-2xl">
                         {guess.votes}{" "}
-                        {currentDay.votes !== guess.votes
-                            ? guess.votes < currentDay.votes
+                        {todaysClimb.votes !== guess.votes
+                            ? guess.votes < todaysClimb.votes
                                 ? "▲"
                                 : "▼"
                             : ""}
