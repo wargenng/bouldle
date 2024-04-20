@@ -9,6 +9,7 @@ import "./styles/select.css";
 import { ConfettiExplosion } from "solid-confetti-explosion";
 import Information from "./components/information";
 import { delay } from "./utilities/delay";
+import { daysBetweenDates } from "./utilities/daysBetweenDates";
 
 const blurAmountList = [25, 10, 5, 4, 3, 2, 1, 0];
 const allowedGuesses = blurAmountList.length;
@@ -68,15 +69,36 @@ function App() {
         setShowInfo(false);
     };
 
+    const share = async () => {
+        try {
+            await navigator.clipboard.writeText(
+                `bouldle #${daysBetweenDates(
+                    "20240419",
+                    getCurrentDateFormattedAsInt().toString()
+                )} 🪨 ${
+                    state() === "won" ? submittedGuesses().length : "X"
+                }/${allowedGuesses} ${
+                    state() === "won"
+                        ? "⬜".repeat(submittedGuesses().length - 1) + "🟩"
+                        : "⬜".repeat(submittedGuesses().length)
+                } bouldle.io`
+            );
+            console.log("Text copied to clipboard successfully!");
+            warn("text successfully copied!");
+        } catch (err) {
+            console.error("Failed to copy text: ", err);
+        }
+    };
+
     return (
         <div class="flex justify-center w-full">
             {state() === "won" ? (
                 <div class="flex items-center justify-center absolute w-full pointer-events-none">
                     <ConfettiExplosion
-                        particleCount={200}
+                        particleCount={100}
                         stageHeight={2000}
+                        stageWidth={400}
                         duration={5000}
-                        shouldDestroyAfterDone={false}
                     />
                 </div>
             ) : null}
@@ -203,11 +225,22 @@ function App() {
                         </div>
                     </>
                 ) : (
-                    <div class={`text-2xl font-bold text-center`}>
-                        {state() === "won"
-                            ? "you won!"
-                            : "you lost! the climb is: " + todaysClimb.route}
-                    </div>
+                    <>
+                        <div class={`text-2xl font-bold text-center mb-3`}>
+                            {state() === "won"
+                                ? "you won!"
+                                : "you lost! the climb is: " +
+                                  todaysClimb.route}
+                        </div>
+                        <div class="text-center">
+                            <button
+                                class="bg-blue-500 text-white py-3 px-4 rounded-lg text-lg font-bold"
+                                onclick={share}
+                            >
+                                share
+                            </button>
+                        </div>
+                    </>
                 )}
                 <div class="py-4">
                     {submittedGuesses()
