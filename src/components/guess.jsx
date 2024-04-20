@@ -1,8 +1,8 @@
-import climbData from "../scripts/data.json";
-import gradeData from "../scripts/grades.json";
-import { random } from "./components/random";
-import { getCurrentDateFormattedAsInt } from "./components/getCurrentDateFormattedAsInt";
-import { haversine } from "./components/haversine";
+import climbData from "../../scripts/data.json";
+import gradeData from "../../scripts/grades.json";
+import { random } from "./random";
+import { getCurrentDateFormattedAsInt } from "./getCurrentDateFormattedAsInt";
+import { haversine } from "./haversine";
 
 export default function Guess(props) {
     const guess =

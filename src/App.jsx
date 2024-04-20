@@ -2,7 +2,7 @@ import { createSignal } from "solid-js";
 import { getCurrentDateFormattedAsInt } from "./components/getCurrentDateFormattedAsInt";
 import { random } from "./components/random";
 import climbData from "../scripts/data.json";
-import Guess from "./guess";
+import Guess from "./components/guess";
 import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import "./select.css";
@@ -89,16 +89,8 @@ function App() {
                                 onChange={setCurrentGuess}
                                 placeholder="choose a climb..."
                             />
-                            {/* <input
-                                list="list-of-climbs"
-                                class="bg-slate-300 w-full rounded-lg h-12 pl-4 text-slate-500"
-                                onInput={(e) => {
-                                    setCurrentGuess(e.target.value);
-                                }}
-                                value={currentGuess()}
-                            /> */}
                             <button
-                                class="bg-slate-500 text-white py-3 px-4 rounded-lg"
+                                class="bg-slate-500 text-white py-3 px-4 rounded-lg text-sm"
                                 onclick={submitGuess}
                                 disabled={state() !== "playing"}
                                 style={{
@@ -108,13 +100,8 @@ function App() {
                                             : "brightness(.5)",
                                 }}
                             >
-                                ✔
+                                ENTER
                             </button>
-                            {/* <datalist id="list-of-climbs">
-                                {climbData.climbs.map((climb) => (
-                                    <option value={climb.route} />
-                                ))}
-                            </datalist> */}
                         </div>
                     </>
                 ) : (

@@ -5,7 +5,9 @@
     outline-color: #707070;
     border-color: #707070;
     height: 3rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
   }
   .custom .solid-select-placeholder {
     
