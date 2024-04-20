@@ -81,7 +81,7 @@ function App() {
                     state() === "won"
                         ? "⬜".repeat(submittedGuesses().length - 1) + "🟩"
                         : "⬜".repeat(submittedGuesses().length)
-                } bouldle.io`
+                } bouldle.com`
             );
             console.log("Text copied to clipboard successfully!");
             warn("text successfully copied!");
