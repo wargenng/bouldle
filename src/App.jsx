@@ -1,11 +1,11 @@
 import { createSignal } from "solid-js";
-import { getCurrentDateFormattedAsInt } from "./components/getCurrentDateFormattedAsInt";
-import { random } from "./components/random";
+import { getCurrentDateFormattedAsInt } from "./utilities/getCurrentDateFormattedAsInt";
+import { random } from "./utilities/random";
 import climbData from "../scripts/data.json";
-import Guess from "./components/guess";
+import Guess from "./components/Guess";
 import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
-import "./select.css";
+import "./styles/select.css";
 import { ConfettiExplosion } from "solid-confetti-explosion";
 
 const blurAmountList = [25, 10, 5, 4, 3, 2, 1, 0];
