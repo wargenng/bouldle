@@ -11,6 +11,7 @@ import Information from "./components/information";
 import { delay } from "./utilities/delay";
 import { daysBetweenDates } from "./utilities/daysBetweenDates";
 import Close from "./components/close";
+import Warn from "./components/warn";
 
 const blurAmountList = [25, 10, 5, 4, 3, 2, 1, 0];
 const allowedGuesses = blurAmountList.length;
@@ -27,6 +28,7 @@ function App() {
     const [showInfo, setShowInfo] = createSignal(true);
     const [currentWarn, setCurrentWarn] = createSignal("");
     const [showWarn, setShowWarn] = createSignal(false);
+    const [showWarnTodayClimb, setShowWarnTodayClimb] = createSignal(false);
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
@@ -103,6 +105,12 @@ function App() {
                     />
                 </div>
             ) : null}
+            <Warn
+                showWarn={showWarnTodayClimb()}
+                setShowWarn={setShowWarnTodayClimb}
+                route={todaysClimb.route}
+                link={todaysClimb.link}
+            />
             <div
                 class={`absolute pointer-events-none rounded-lg overflow-hidden transition-transform ${
                     showWarn() ? "translate-y-3" : "translate-y-[-4rem]"
@@ -213,8 +221,15 @@ function App() {
                     <>
                         <div class={`text-2xl font-bold text-center mb-3`}>
                             {state() === "won" ? "you won!" : "you lost!"}{" "}
-                            {`the climb is:
-                                ${todaysClimb.route}`}
+                            {`the climb is: `}
+                            <span
+                                class="underline"
+                                onclick={() => {
+                                    setShowWarnTodayClimb(true);
+                                }}
+                            >
+                                {todaysClimb.route}
+                            </span>
                         </div>
                         <div class="w-full flex justify-center">
                             <button
