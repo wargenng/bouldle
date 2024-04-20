@@ -85,7 +85,9 @@ function App() {
                     showWarn() ? "translate-y-3" : "translate-y-[-4rem]"
                 }`}
             >
-                <div class="bg-black text-white p-2">{currentWarn()}</div>
+                <div class="bg-red-500 text-white font-bold p-2">
+                    {currentWarn()}
+                </div>
             </div>
             <div
                 class={`absolute w-full h-full z-10 transition-opacity ${
