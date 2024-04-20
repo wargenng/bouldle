@@ -227,17 +227,33 @@ function App() {
                 ) : (
                     <>
                         <div class={`text-2xl font-bold text-center mb-3`}>
-                            {state() === "won"
-                                ? "you won!"
-                                : "you lost! the climb is: " +
-                                  todaysClimb.route}
+                            {state() === "won" ? "you won!" : "you lost!"}{" "}
+                            {`the climb is:
+                                ${todaysClimb.route}`}
                         </div>
-                        <div class="text-center">
+                        <div class="w-full flex justify-center">
                             <button
-                                class="bg-blue-500 text-white py-3 px-4 rounded-lg text-lg font-bold"
+                                class="bg-slate-500 text-white py-3 px-4 rounded-lg text-lg font-bold flex items-center"
                                 onclick={share}
                             >
-                                share
+                                share results
+                                <svg
+                                    fill="none"
+                                    stroke-width="2"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    viewBox="0 0 24 24"
+                                    height="1em"
+                                    width="1em"
+                                    style="overflow: visible; color: currentcolor;"
+                                    class="ml-2"
+                                >
+                                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                    <path d="M16 6 12 2 8 6"></path>
+                                    <path d="M12 2 12 15"></path>
+                                </svg>
                             </button>
                         </div>
                     </>
