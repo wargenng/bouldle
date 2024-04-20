@@ -121,7 +121,7 @@
             "link": "https://www.mountainproject.com/route/106657518/alexisizer"
         },
         {
-            "route": "Hyperglide (aka Monkey Pinch)",
+            "route": "Hyperglide",
             "grade": "V5",
             "stars": "3.4",
             "votes": 311,
@@ -697,18 +697,6 @@
             "link": "https://www.mountainproject.com/route/116596015/the-red-wave"
         },
         {
-            "route": "Total Devastation",
-            "grade": "V2",
-            "stars": "3.1",
-            "votes": 35,
-            "area": "Kraft",
-            "length": "25",
-            "latitude": "36.15974",
-            "longitude": "-115.41913",
-            "image": "https://mountainproject.com/assets/photos/climb/112508120_medium_1494309234.jpg?cache=1702072299",
-            "link": "https://www.mountainproject.com/route/111470042/total-devastation"
-        },
-        {
             "route": "Big K",
             "grade": "V8",
             "stars": "3.5",
@@ -1021,18 +1009,6 @@
             "link": "https://www.mountainproject.com/route/112836496/drop-the-transmission"
         },
         {
-            "route": "Total Devastation right sit",
-            "grade": "V8-9",
-            "stars": "4",
-            "votes": 1,
-            "area": "Kraft",
-            "length": "30",
-            "latitude": "36.15974",
-            "longitude": "-115.41913",
-            "image": "https://mountainproject.com/assets/photos/climb/121616673_medium_1636656320.jpg?cache=1677615664",
-            "link": "https://www.mountainproject.com/route/121616668/total-devastation-right-sit"
-        },
-        {
             "route": "Finish Line",
             "grade": "V5",
             "stars": "3.3",
@@ -1079,54 +1055,6 @@
             "longitude": "-115.4144",
             "image": "https://mountainproject.com/assets/photos/climb/121918146_medium_1643506457.jpg?cache=1677615694",
             "link": "https://www.mountainproject.com/route/121918111/crocodile-smile"
-        },
-        {
-            "route": "My wife's balls",
-            "grade": "V2",
-            "stars": "4",
-            "votes": 1,
-            "area": "Black Velvet Canyon",
-            "length": "25",
-            "latitude": "36.03495",
-            "longitude": "-115.45771",
-            "image": "https://mountainproject.com/assets/photos/climb/117965390_medium_1572372350.jpg?cache=1702073501",
-            "link": "https://www.mountainproject.com/route/117965374/my-wifes-balls"
-        },
-        {
-            "route": "Supple Leopard",
-            "grade": "V7",
-            "stars": "4",
-            "votes": 1,
-            "area": "White Rock Spring",
-            "length": "12",
-            "latitude": "36.17556",
-            "longitude": "-115.48863",
-            "image": "https://mountainproject.com/assets/photos/climb/116377899_medium_1548139571.jpg?cache=1702073235",
-            "link": "https://www.mountainproject.com/route/116377892/supple-leopard"
-        },
-        {
-            "route": "Wavestorm",
-            "grade": "V1",
-            "stars": "4",
-            "votes": 1,
-            "area": "Sandstone Quarry",
-            "length": "25",
-            "latitude": "36.16082",
-            "longitude": "-115.44685",
-            "image": "https://mountainproject.com/assets/photos/climb/115429906_medium_1539722036.jpg?cache=1702073156",
-            "link": "https://www.mountainproject.com/route/115429901/wavestorm"
-        },
-        {
-            "route": "Impeded Stream",
-            "grade": "V5",
-            "stars": "4",
-            "votes": 1,
-            "area": "Southern Outcrops",
-            "length": "12",
-            "latitude": "36.00552",
-            "longitude": "-115.46299",
-            "image": "https://mountainproject.com/assets/photos/climb/118291514_medium_1580230359.jpg?cache=1711752757",
-            "link": "https://www.mountainproject.com/route/118291491/impeded-stream"
         },
         {
             "route": "Peruvian Left",

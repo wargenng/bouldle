@@ -3,6 +3,9 @@ import { getCurrentDateFormattedAsInt } from "./components/getCurrentDateFormatt
 import { random } from "./components/random";
 import climbData from "../scripts/data.json";
 import Guess from "./guess";
+import { Select, createOptions } from "@thisbeyond/solid-select";
+import "@thisbeyond/solid-select/style.css";
+import "./select.css";
 
 const blurAmountList = [25, 10, 5, 4, 3, 2, 1, 0];
 const allowedGuesses = blurAmountList.length;
@@ -78,14 +81,22 @@ function App() {
                             of {allowedGuesses}
                         </div>
                         <div class="flex gap-2">
-                            <input
+                            <Select
+                                class="custom h-12 w-full"
+                                {...createOptions(
+                                    climbData.climbs.map((climb) => climb.route)
+                                )}
+                                onChange={setCurrentGuess}
+                                placeholder="choose a climb..."
+                            />
+                            {/* <input
                                 list="list-of-climbs"
                                 class="bg-slate-300 w-full rounded-lg h-12 pl-4 text-slate-500"
                                 onInput={(e) => {
                                     setCurrentGuess(e.target.value);
                                 }}
                                 value={currentGuess()}
-                            />
+                            /> */}
                             <button
                                 class="bg-slate-500 text-white py-3 px-4 rounded-lg"
                                 onclick={submitGuess}
@@ -99,19 +110,18 @@ function App() {
                             >
                                 ✔
                             </button>
-                            <datalist id="list-of-climbs">
+                            {/* <datalist id="list-of-climbs">
                                 {climbData.climbs.map((climb) => (
                                     <option value={climb.route} />
                                 ))}
-                            </datalist>
+                            </datalist> */}
                         </div>
                     </>
                 ) : (
                     <div class={`text-2xl font-bold text-center`}>
                         {state() === "won"
                             ? "you won!"
-                            : "you lost! the climb is: " +
-                              climbData.climbs[todaysClimb].route}
+                            : "you lost! the climb is: " + todaysClimb.route}
                     </div>
                 )}
                 <div class="py-4">

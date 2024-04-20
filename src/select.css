@@ -1,0 +1,23 @@
+.custom .solid-select-container {
+  
+  }
+  .custom .solid-select-control {
+    outline-color: #707070;
+    border-color: #707070;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+  .custom .solid-select-placeholder {
+    
+  }
+  .custom .solid-select-option:hover {
+    
+  }
+  .custom .solid-select-option[data-focused=true] {
+    
+  }
+
+  .custom .solid-select-list {
+    background-color: white;
+    height: 150px;
+  }

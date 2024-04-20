@@ -18,6 +18,7 @@
         "vite-plugin-solid": "^2.8.2"
     },
     "dependencies": {
+        "@thisbeyond/solid-select": "^0.14.0",
         "solid-js": "^1.8.11"
     },
     "type": "module"
