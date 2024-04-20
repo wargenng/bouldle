@@ -169,7 +169,7 @@ function App() {
                                 placeholder="choose a climb..."
                             />
                             <button
-                                class="bg-slate-500 text-white py-3 px-4 rounded-lg text-sm"
+                                class="bg-slate-500 text-white py-3 px-4 rounded-lg text-sm font-bold"
                                 onclick={submitGuess}
                                 disabled={state() !== "playing"}
                                 style={{
@@ -179,7 +179,7 @@ function App() {
                                             : "brightness(.5)",
                                 }}
                             >
-                                ENTER
+                                enter
                             </button>
                         </div>
                     </>
