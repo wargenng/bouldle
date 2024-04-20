@@ -182,6 +182,7 @@ function App() {
                     <div class="h-72 w-72 overflow-hidden flex items-center justify-center object-cover shadow-lg">
                         <img
                             style={{
+                                "pointer-events": "none",
                                 filter: `blur(${
                                     state() === "won"
                                         ? 0
