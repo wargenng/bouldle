@@ -42,7 +42,7 @@ export default function Guess(props) {
                     }`}
                 >
                     <h1>grade</h1>
-                    <p class="text-2xl">
+                    <p class="text-2xl h-full flex items-center">
                         {guess.grade}{" "}
                         {todaysClimb.grade !== guess.grade
                             ? gradeData.grades.indexOf(guess.grade) <
@@ -53,7 +53,7 @@ export default function Guess(props) {
                     </p>
                 </div>
                 <div
-                    class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
+                    class={`w-1/4 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
                         todaysClimb.length === guess.length
                             ? "bg-green-600"
                             : todaysClimb.length + 2 > guess.length &&
@@ -63,7 +63,7 @@ export default function Guess(props) {
                     }`}
                 >
                     <h1>length</h1>
-                    <p class="text-2xl">
+                    <p class="text-2xl h-full flex items-center">
                         {guess.length === "" ? "N/A" : guess.length + " ft"}{" "}
                         {todaysClimb.length === "" ||
                         todaysClimb.length === guess.length ||
@@ -94,7 +94,7 @@ export default function Guess(props) {
                     }`}
                 >
                     <div>distance</div>
-                    <div class="text-2xl">
+                    <div class="text-2xl h-full flex items-center">
                         {
                             haversine(
                                 guess.latitude,
@@ -129,7 +129,7 @@ export default function Guess(props) {
                     }`}
                 >
                     <h1>area</h1>
-                    <p class="text-lg">{guess.area}</p>
+                    <p class="text-lg h-full flex items-center">{guess.area}</p>
                 </div>
                 <div
                     class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
@@ -142,7 +142,7 @@ export default function Guess(props) {
                     }`}
                 >
                     <h1>stars</h1>
-                    <p class="text-2xl">
+                    <p class="text-2xl h-full flex items-center">
                         {guess.stars}{" "}
                         {todaysClimb.stars !== guess.stars
                             ? guess.stars < todaysClimb.stars
@@ -162,7 +162,7 @@ export default function Guess(props) {
                     }`}
                 >
                     <h1>votes</h1>
-                    <p class="text-2xl">
+                    <p class="text-2xl h-full flex items-center">
                         {guess.votes}{" "}
                         {todaysClimb.votes !== guess.votes
                             ? guess.votes < todaysClimb.votes
