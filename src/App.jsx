@@ -13,7 +13,7 @@ import { daysBetweenDates } from "./utilities/daysBetweenDates";
 import Close from "./components/close";
 import Warn from "./components/warn";
 
-const blurAmountList = [25, 10, 5, 4, 3, 2, 1, 0];
+const blurAmountList = [35, 20, 15, 10, 5, 3, 2, 1];
 const allowedGuesses = blurAmountList.length;
 const todaysClimb =
     climbData.climbs[
@@ -23,6 +23,17 @@ const todaysClimb =
     ];
 
 function App() {
+    document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+    });
+    document.addEventListener(
+        "touchforcechange",
+        function (event) {
+            event.preventDefault();
+        },
+        false
+    );
+
     const [currentGuess, setCurrentGuess] = createSignal("");
     const [submittedGuesses, setSubmittedGuesses] = createSignal([]);
     const [showInfo, setShowInfo] = createSignal(true);
@@ -180,7 +191,6 @@ function App() {
                                 }px)`,
                             }}
                             class="min-w-full"
-                            oncontextmenu="return false;"
                             src={todaysClimb.image}
                         />
                     </div>
