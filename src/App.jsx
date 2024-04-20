@@ -6,6 +6,7 @@ import Guess from "./components/guess";
 import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import "./select.css";
+import { ConfettiExplosion } from "solid-confetti-explosion";
 
 const blurAmountList = [25, 10, 5, 4, 3, 2, 1, 0];
 const allowedGuesses = blurAmountList.length;
@@ -56,7 +57,17 @@ function App() {
     };
 
     return (
-        <div class="flex align-center justify-center w-full">
+        <div class="flex justify-center w-full">
+            {state() === "won" ? (
+                <div class="flex items-center justify-center absolute w-full pointer-events-none">
+                    <ConfettiExplosion
+                        particleCount={200}
+                        stageHeight={2000}
+                        duration={5000}
+                        shouldDestroyAfterDone={false}
+                    />
+                </div>
+            ) : null}
             <div
                 class={`absolute w-full h-full z-10 transition-opacity ${
                     showInfo() ? "flex" : "hidden"
