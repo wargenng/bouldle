@@ -11,11 +11,7 @@ export default defineConfig({
         // devtools(),
         solidPlugin(),
     ],
-    server: {
-        fs: {
-            cachedChecks: false,
-        },
-    },
+    server: {},
     build: {
         target: "esnext",
     },
