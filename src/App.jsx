@@ -8,6 +8,7 @@ import "@thisbeyond/solid-select/style.css";
 import "./styles/select.css";
 import { ConfettiExplosion } from "solid-confetti-explosion";
 import Information from "./components/information";
+import { delay } from "./utilities/delay";
 
 const blurAmountList = [25, 10, 5, 4, 3, 2, 1, 0];
 const allowedGuesses = blurAmountList.length;
@@ -22,6 +23,8 @@ function App() {
     const [currentGuess, setCurrentGuess] = createSignal("");
     const [submittedGuesses, setSubmittedGuesses] = createSignal([]);
     const [showInfo, setShowInfo] = createSignal(true);
+    const [currentWarn, setCurrentWarn] = createSignal("");
+    const [showWarn, setShowWarn] = createSignal(false);
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
@@ -37,9 +40,9 @@ function App() {
                 .map((climb) => climb.route.toLowerCase())
                 .includes(currentGuess().toLowerCase())
         ) {
-            alert("not in list of climbs");
+            warn("not in list of climbs");
         } else if (submittedGuesses().includes(currentGuess())) {
-            alert("already guessed climb");
+            warn("already guessed climb");
         } else {
             setSubmittedGuesses([
                 ...submittedGuesses(),
@@ -51,6 +54,14 @@ function App() {
             ]);
         }
         setCurrentGuess("");
+    };
+
+    const warn = async (warn) => {
+        setCurrentWarn(warn);
+        setShowWarn(true);
+
+        await delay(2000);
+        setShowWarn(false);
     };
 
     const handleClose = () => {
@@ -69,6 +80,13 @@ function App() {
                     />
                 </div>
             ) : null}
+            <div
+                class={`absolute pointer-events-none rounded-lg overflow-hidden transition-transform ${
+                    showWarn() ? "translate-y-3" : "translate-y-[-4rem]"
+                }`}
+            >
+                <div class="bg-black text-white p-2">{currentWarn()}</div>
+            </div>
             <div
                 class={`absolute w-full h-full z-10 transition-opacity ${
                     showInfo() ? "flex" : "hidden"
