@@ -180,6 +180,7 @@ function App() {
                                 }px)`,
                             }}
                             class="min-w-full"
+                            oncontextmenu="return false;"
                             src={todaysClimb.image}
                         />
                     </div>
