@@ -14,6 +14,7 @@ import Close from "./components/close";
 import Warn from "./components/warn";
 import { groupByArea } from "./utilities/groupByArea";
 import { createGroupedOptions } from "./utilities/createGroupedOptions";
+import Options from "./components/options";
 
 const blurAmountList = [35, 20, 15, 10, 5, 2];
 const allowedGuesses = blurAmountList.length;
@@ -31,7 +32,7 @@ function App() {
     const [currentWarn, setCurrentWarn] = createSignal("");
     const [showWarn, setShowWarn] = createSignal(false);
     const [showWarnTodayClimb, setShowWarnTodayClimb] = createSignal(false);
-    const [showImage, setShowImage] = createSignal(false);
+    const [showImage, setShowImage] = createSignal(true);
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
@@ -226,31 +227,11 @@ function App() {
                                 <span class="underline"> image</span>
                             </div>
                         </div>
-                        <div class="flex gap-2">
-                            <Select
-                                class="custom h-12 w-full"
-                                {...createGroupedOptions(
-                                    groupByArea(
-                                        climbData.climbs.map((climb) => {
-                                            climb.label = `${climb.route} ${climb.grade}`;
-                                            return climb;
-                                        })
-                                    )
-                                )}
-                                onChange={setCurrentGuess}
-                                placeholder="type a climb..."
-                                format={(item, type) =>
-                                    type === "option" ? item.label : item.route
-                                }
-                            />
-                            <button
-                                class="bg-slate-500 text-white py-3 px-4 rounded-lg text-sm font-bold"
-                                onclick={submitGuess}
-                                disabled={state() !== "playing"}
-                            >
-                                enter
-                            </button>
-                        </div>
+                        <Options
+                            climbData={climbData}
+                            setCurrentGuess={setCurrentGuess}
+                            submitGuess={submitGuess}
+                        />
                     </>
                 ) : (
                     <>
