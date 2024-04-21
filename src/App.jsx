@@ -176,12 +176,12 @@ function App() {
                         ></path>
                     </svg>
                 </div>
-                <div
-                    class={`w-full items-center justify-center pb-4 ${
-                        showImage() ? "flex" : "hidden"
-                    }`}
-                >
-                    <div class="pointer-events-none h-72 w-72 overflow-hidden flex items-center justify-center object-cover shadow-lg">
+                <div class={`w-full items-center justify-center pb-4 flex`}>
+                    <div
+                        class={`pointer-events-none ${
+                            showImage() ? "h-72" : "h-0"
+                        } w-72 overflow-hidden flex items-center justify-center object-cover shadow-lg transition-[height] duration-500`}
+                    >
                         <img
                             style={{
                                 filter: `blur(${
