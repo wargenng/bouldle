@@ -2,7 +2,7 @@ export function random(seed) {
     //hash seed
     // Simple hash function to mix up bits
     seed ^= seed << 17;
-    seed ^= seed >> 19;
+    seed ^= seed >> 31;
     seed ^= seed << 51;
 
     // Define the constants for the LCG
