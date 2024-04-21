@@ -42,10 +42,10 @@ function App() {
         if (
             !climbData.climbs
                 .map((climb) => climb.route.toLowerCase())
-                .includes(currentGuess().toLowerCase())
+                .includes(currentGuess().route.toLowerCase())
         ) {
             warn("not in list of climbs");
-        } else if (submittedGuesses().includes(currentGuess())) {
+        } else if (submittedGuesses().includes(currentGuess().route)) {
             warn("already guessed climb");
         } else {
             setSubmittedGuesses([
@@ -53,7 +53,7 @@ function App() {
                 climbData.climbs[
                     climbData.climbs
                         .map((climb) => climb.route.toLowerCase())
-                        .indexOf(currentGuess().toLowerCase())
+                        .indexOf(currentGuess().route.toLowerCase())
                 ].route,
             ]);
         }
@@ -197,10 +197,19 @@ function App() {
                             <Select
                                 class="custom h-12 w-full"
                                 {...createOptions(
-                                    climbData.climbs.map((climb) => climb.route)
+                                    climbData.climbs.map((climb) => {
+                                        climb.label = `${climb.route} ${climb.grade}`;
+                                        return climb;
+                                    }),
+                                    {
+                                        key: "label",
+                                    }
                                 )}
                                 onChange={setCurrentGuess}
                                 placeholder="type a climb..."
+                                format={(item, type) =>
+                                    type === "option" ? item.label : item.route
+                                }
                             />
                             <button
                                 class="bg-slate-500 text-white py-3 px-4 rounded-lg text-sm font-bold"
