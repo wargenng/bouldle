@@ -4,7 +4,7 @@ import { groupByArea } from "../utilities/groupByArea";
 
 export default function Options(props) {
     return (
-        <div class="flex gap-2">
+        <div class="flex gap-2 text-primary bg-background">
             <Select
                 class="custom h-12 w-full"
                 {...createGroupedOptions(

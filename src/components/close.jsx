@@ -7,7 +7,7 @@ export default function Close(props) {
             viewBox="0 0 16 16"
             height="1.5rem"
             width="1.5rem"
-            style="overflow: visible; color: black;"
+            style="overflow: visible;"
             class="m-4 pointer-events-auto"
             onclick={props.handleClose}
         >

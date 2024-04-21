@@ -8,12 +8,12 @@ export default function Warn(props) {
             } items-center justify-center`}
         >
             <div
-                class="absolute w-screen h-screen bg-black opacity-50"
+                class="absolute w-screen h-screen bg-primary opacity-20"
                 onclick={() => {
                     props.setShowWarn(false);
                 }}
             />
-            <div class="absolute w-3/4 h-fit bg-white rounded-lg shadow-md flex flex-col justify-center">
+            <div class="absolute w-3/4 h-fit bg-background rounded-lg shadow-md flex flex-col justify-center">
                 <div class="m-4">
                     <h1 class="mb-4 font-bold text-2xl">Warning!</h1>
                     <p class="text-lg">

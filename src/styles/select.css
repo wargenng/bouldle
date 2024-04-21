@@ -16,10 +16,10 @@
     
   }
   .custom .solid-select-option[data-focused=true] {
-    
+    background-color: rgba(var(--background));
   }
 
   .custom .solid-select-list {
-    background-color: white;
+    background-color: rgba(var(--background));
     height: 170px;
   }

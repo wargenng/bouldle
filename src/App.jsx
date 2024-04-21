@@ -1,9 +1,8 @@
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { getCurrentDateFormattedAsInt } from "./utilities/getCurrentDateFormattedAsInt";
 import { random } from "./utilities/random";
 import climbData from "../scripts/data.json";
 import Guess from "./components/guess";
-import { Select, createOptions } from "@thisbeyond/solid-select";
 import "@thisbeyond/solid-select/style.css";
 import "./styles/select.css";
 import { ConfettiExplosion } from "solid-confetti-explosion";
@@ -12,9 +11,8 @@ import { delay } from "./utilities/delay";
 import { daysBetweenDates } from "./utilities/daysBetweenDates";
 import Close from "./components/close";
 import Warn from "./components/warn";
-import { groupByArea } from "./utilities/groupByArea";
-import { createGroupedOptions } from "./utilities/createGroupedOptions";
 import Options from "./components/options";
+import Theme from "./components/theme";
 
 const blurAmountList = [35, 20, 15, 10, 5, 2];
 const allowedGuesses = blurAmountList.length;
@@ -33,6 +31,19 @@ function App() {
     const [showWarn, setShowWarn] = createSignal(false);
     const [showWarnTodayClimb, setShowWarnTodayClimb] = createSignal(false);
     const [showImage, setShowImage] = createSignal(true);
+    const [isDarkMode, setIsDarkMode] = createSignal(false);
+
+    createEffect(() => {
+        const selectedTheme = localStorage.getItem("theme");
+
+        if (selectedTheme) {
+            document.body.classList.add(selectedTheme);
+            if (selectedTheme === "light") setIsDarkMode(false);
+            else setIsDarkMode(true);
+        } else {
+            document.body.classList.add("light");
+        }
+    });
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
@@ -82,6 +93,20 @@ function App() {
         setShowInfo(false);
     };
 
+    const handleTheme = () => {
+        if (isDarkMode()) {
+            document.body.classList.remove("dark");
+            document.body.classList.add("light");
+            setIsDarkMode(false);
+            localStorage.setItem("theme", "light");
+        } else {
+            document.body.classList.remove("light");
+            document.body.classList.add("dark");
+            setIsDarkMode(true);
+            localStorage.setItem("theme", "dark");
+        }
+    };
+
     const share = async () => {
         try {
             await navigator.clipboard.writeText(
@@ -104,7 +129,7 @@ function App() {
     };
 
     return (
-        <div class="flex justify-center w-full">
+        <div class="flex justify-center w-full bg-background">
             {state() === "won" ? (
                 <div class="flex items-center justify-center absolute w-full pointer-events-none">
                     <ConfettiExplosion
@@ -137,10 +162,10 @@ function App() {
             >
                 {" "}
                 <div
-                    class="absolute w-screen h-screen bg-black opacity-50"
+                    class="absolute w-screen h-screen bg-primary opacity-20"
                     onclick={handleClose}
                 />
-                <div class="absolute w-3/4 h-fit bg-white rounded-lg shadow-md flex flex-col justify-center">
+                <div class="absolute w-3/4 h-fit bg-background rounded-lg shadow-md flex flex-col justify-center">
                     <Information />
                     <button
                         class="bg-red-600 text-white p-2 m-4 rounded-lg font-bold"
@@ -157,6 +182,10 @@ function App() {
                 <div class="w-full flex pb-4">
                     <h1 class="text-2xl font-bold">bouldle.</h1>
                     <div class="grow" />
+                    <Theme
+                        isDarkMode={isDarkMode()}
+                        handleTheme={handleTheme}
+                    />
                     <svg
                         fill="currentColor"
                         stroke-width="0"

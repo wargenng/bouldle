@@ -27,14 +27,14 @@ export default function Guess(props) {
     };
 
     return (
-        <>
+        <div class="text-white">
             <Warn
                 showWarn={showWarn()}
                 setShowWarn={setShowWarn}
                 route={guess.route}
                 link={guess.link}
             />
-            <div class="text-white text-center mb-5">
+            <div class=" text-center mb-5">
                 <div class="flex items-center gap-4 mb-5">
                     <div class="h-24 w-24 rounded-full overflow-hidden object-cover flex items-center justify-center">
                         <img
@@ -43,7 +43,7 @@ export default function Guess(props) {
                         />
                     </div>
                     <p
-                        class="text-2xl text-black font-bold underline"
+                        class="text-2xl font-bold underline text-primary"
                         onclick={() => {
                             setShowWarn(true);
                         }}
@@ -199,6 +199,6 @@ export default function Guess(props) {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
