@@ -23,17 +23,6 @@ const todaysClimb =
     ];
 
 function App() {
-    document.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
-    });
-    document.addEventListener(
-        "touchforcechange",
-        function (event) {
-            event.preventDefault();
-        },
-        false
-    );
-
     const [currentGuess, setCurrentGuess] = createSignal("");
     const [submittedGuesses, setSubmittedGuesses] = createSignal([]);
     const [showInfo, setShowInfo] = createSignal(true);
