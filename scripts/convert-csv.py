@@ -57,10 +57,10 @@ for data in data_list:
     all_climbs.append({
         "route": data["Route"],
         "grade": data["Rating"],
-        "stars": data["Avg Stars"],
+        "stars": float(data["Avg Stars"]),
         "votes": get_votes(data["URL"]),
         "area": get_area(data["Location"]),
-        "length": data["Length"],
+        "length": "" if data["Length"]=="" else int(data["Length"]),
         "latitude": data["Area Latitude"],
         "longitude": data["Area Longitude"],
         "image": get_climb_img(data["URL"]),
