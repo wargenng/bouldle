@@ -13,7 +13,7 @@ import { daysBetweenDates } from "./utilities/daysBetweenDates";
 import Close from "./components/close";
 import Warn from "./components/warn";
 
-const blurAmountList = [35, 20, 15, 10, 5, 3, 2, 1];
+const blurAmountList = [35, 20, 15, 10, 5, 2];
 const allowedGuesses = blurAmountList.length;
 const todaysClimb =
     climbData.climbs[
@@ -172,7 +172,7 @@ function App() {
                         <img
                             style={{
                                 filter: `blur(${
-                                    state() === "won"
+                                    state() !== "playing"
                                         ? 0
                                         : blurAmountList[
                                               submittedGuesses().length
