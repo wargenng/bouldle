@@ -179,7 +179,7 @@ function App() {
                     </svg>
                 </div>
                 <div class="w-full flex items-center justify-center pb-4">
-                    <div class="h-72 w-72 overflow-hidden flex items-center justify-center object-cover shadow-lg">
+                    <div class="pointer-events-none h-72 w-72 overflow-hidden flex items-center justify-center object-cover shadow-lg">
                         <img
                             style={{
                                 filter: `blur(${
