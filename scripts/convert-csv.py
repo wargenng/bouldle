@@ -4,20 +4,11 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 import json
 
-# Define the path to the CSV file
 file_path = 'route-finder.csv'
-
-# Create an empty list to store the dictionaries
 data_list = []
-
-# Open the CSV file
 with open(file_path, mode='r', newline='', encoding='utf-8') as file:
-    # Create a DictReader object
     csv_reader = csv.DictReader(file)
-    
-    # Iterate over each row in the CSV file
     for row in csv_reader:
-        # Each row is already a dictionary; append it to the list
         data_list.append(row)
 
 def get_climb_img(URL):

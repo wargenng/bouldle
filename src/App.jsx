@@ -31,12 +31,18 @@ function App() {
     const [currentWarn, setCurrentWarn] = createSignal("");
     const [showWarn, setShowWarn] = createSignal(false);
     const [showWarnTodayClimb, setShowWarnTodayClimb] = createSignal(false);
+    const [showImage, setShowImage] = createSignal(false);
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
-        if (lastGuess?.toLowerCase() === todaysClimb.route.toLowerCase())
+        if (lastGuess?.toLowerCase() === todaysClimb.route.toLowerCase()) {
+            setShowImage(true);
             return "won";
-        if (submittedGuesses().length >= allowedGuesses) return "lost";
+        }
+        if (submittedGuesses().length >= allowedGuesses) {
+            setShowImage(true);
+            return "lost";
+        }
         return "playing";
     };
 
@@ -44,7 +50,8 @@ function App() {
         if (
             !climbData.climbs
                 .map((climb) => climb.route.toLowerCase())
-                .includes(currentGuess().route.toLowerCase())
+                .includes(currentGuess().route?.toLowerCase()) ||
+            currentGuess() === ""
         ) {
             warn("not in list of climbs");
         } else if (submittedGuesses().includes(currentGuess().route)) {
@@ -169,7 +176,11 @@ function App() {
                         ></path>
                     </svg>
                 </div>
-                <div class="w-full flex items-center justify-center pb-4">
+                <div
+                    class={`w-full items-center justify-center pb-4 ${
+                        showImage() ? "flex" : "hidden"
+                    }`}
+                >
                     <div class="pointer-events-none h-72 w-72 overflow-hidden flex items-center justify-center object-cover shadow-lg">
                         <img
                             style={{
@@ -181,7 +192,7 @@ function App() {
                                           ]
                                 }px)`,
                             }}
-                            class="min-w-full"
+                            class={`min-w-full`}
                             src={todaysClimb.image}
                         />
                     </div>
@@ -189,11 +200,31 @@ function App() {
                 {state() === "playing" ? (
                     <>
                         <div class="w-full flex justify-start p-3 text-lg font-bold">
-                            Guess{" "}
-                            {submittedGuesses().length < allowedGuesses
-                                ? submittedGuesses().length + 1
-                                : allowedGuesses}{" "}
-                            of {allowedGuesses}
+                            <div>
+                                Guess{" "}
+                                {submittedGuesses().length < allowedGuesses
+                                    ? submittedGuesses().length + 1
+                                    : allowedGuesses}{" "}
+                                of {allowedGuesses}
+                            </div>
+                            <div class="grow"></div>
+                            <div
+                                class=""
+                                onclick={() => {
+                                    setShowImage(!showImage());
+                                }}
+                            >
+                                {showImage() ? (
+                                    <>
+                                        ▼ <span class="underline">hide</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        ▲ <span class="underline">show</span>
+                                    </>
+                                )}
+                                <span class="underline"> image</span>
+                            </div>
                         </div>
                         <div class="flex gap-2">
                             <Select
@@ -216,12 +247,6 @@ function App() {
                                 class="bg-slate-500 text-white py-3 px-4 rounded-lg text-sm font-bold"
                                 onclick={submitGuess}
                                 disabled={state() !== "playing"}
-                                style={{
-                                    filter:
-                                        state() === "playing"
-                                            ? ""
-                                            : "brightness(.5)",
-                                }}
                             >
                                 enter
                             </button>
