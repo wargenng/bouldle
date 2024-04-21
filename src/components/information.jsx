@@ -3,7 +3,7 @@ export default function Information(props) {
         <div class="m-4 text-xl">
             <h1 class="font-bold text-2xl mb-2">how to play</h1>
             <p class="mb-2">
-                1. Try to guess the red rock boulder in 8 guesses.
+                1. Try to guess the southern nevada boulder in 8 guesses.
             </p>
             <p class="mb-2">
                 2. <span class="text-green-500 font-bold">Green</span> is an

@@ -1,7 +1,7 @@
 export function random(seed) {
     //hash seed
     // Simple hash function to mix up bits
-    seed ^= seed << 13;
+    seed ^= seed << 17;
     seed ^= seed >> 19;
     seed ^= seed << 51;
 
