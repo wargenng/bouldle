@@ -12,6 +12,8 @@ import { delay } from "./utilities/delay";
 import { daysBetweenDates } from "./utilities/daysBetweenDates";
 import Close from "./components/close";
 import Warn from "./components/warn";
+import { groupByArea } from "./utilities/groupByArea";
+import { createGroupedOptions } from "./utilities/createGroupedOptions";
 
 const blurAmountList = [35, 20, 15, 10, 5, 2];
 const allowedGuesses = blurAmountList.length;
@@ -196,14 +198,13 @@ function App() {
                         <div class="flex gap-2">
                             <Select
                                 class="custom h-12 w-full"
-                                {...createOptions(
-                                    climbData.climbs.map((climb) => {
-                                        climb.label = `${climb.route} ${climb.grade}`;
-                                        return climb;
-                                    }),
-                                    {
-                                        key: "label",
-                                    }
+                                {...createGroupedOptions(
+                                    groupByArea(
+                                        climbData.climbs.map((climb) => {
+                                            climb.label = `${climb.route} ${climb.grade}`;
+                                            return climb;
+                                        })
+                                    )
                                 )}
                                 onChange={setCurrentGuess}
                                 placeholder="type a climb..."

@@ -1,18 +1,6 @@
 {
     "climbs": [
         {
-            "route": "Natasha's Highball",
-            "grade": "V2",
-            "stars": 3.9,
-            "votes": 155,
-            "area": "Black Velvet",
-            "length": 20,
-            "latitude": "36.03624",
-            "longitude": "-115.46338",
-            "image": "https://mountainproject.com/assets/photos/climb/107547798_medium_1494196396.jpg?cache=1711577257",
-            "link": "https://www.mountainproject.com/route/111477313/natashas-highball"
-        },
-        {
             "route": "Vino Rojo",
             "grade": "V6",
             "stars": 3.8,
@@ -23,6 +11,18 @@
             "longitude": "-115.41296",
             "image": "https://mountainproject.com/assets/photos/climb/109017745_medium_1494302890.jpg?cache=1701318495",
             "link": "https://www.mountainproject.com/route/106964471/vino-rojo"
+        },
+        {
+            "route": "Natasha's Highball",
+            "grade": "V2",
+            "stars": 3.9,
+            "votes": 155,
+            "area": "Black Velvet",
+            "length": 20,
+            "latitude": "36.03624",
+            "longitude": "-115.46338",
+            "image": "https://mountainproject.com/assets/photos/climb/107547798_medium_1494196396.jpg?cache=1711577257",
+            "link": "https://www.mountainproject.com/route/111477313/natashas-highball"
         },
         {
             "route": "Plumber's Crack",
@@ -3089,7 +3089,7 @@
             "grade": "V3",
             "stars": 3.3,
             "votes": 3,
-            "area": "andy",
+            "area": "Big Sandy",
             "length": 12,
             "latitude": "36.06038",
             "longitude": "-114.9212",
