@@ -200,7 +200,7 @@ function App() {
                                     climbData.climbs.map((climb) => climb.route)
                                 )}
                                 onChange={setCurrentGuess}
-                                placeholder="choose a climb..."
+                                placeholder="type a climb..."
                             />
                             <button
                                 class="bg-slate-500 text-white py-3 px-4 rounded-lg text-sm font-bold"
