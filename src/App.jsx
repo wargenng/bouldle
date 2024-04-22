@@ -81,6 +81,7 @@ function App() {
                         .indexOf(currentGuess().route.toLowerCase())
                 ].route,
             ]);
+            window.scrollTo(0, 0);
         }
         setCurrentGuess("");
     };
@@ -98,6 +99,7 @@ function App() {
     };
 
     const share = async () => {
+        window.scrollTo(0, 0);
         try {
             await navigator.clipboard.writeText(
                 `bouldle #${daysBetweenDates(
