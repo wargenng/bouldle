@@ -63,6 +63,7 @@ function App() {
     };
 
     const submitGuess = () => {
+        window.scrollTo(0, 0);
         if (
             !climbData.climbs
                 .map((climb) => climb.route.toLowerCase())
@@ -81,7 +82,6 @@ function App() {
                         .indexOf(currentGuess().route.toLowerCase())
                 ].route,
             ]);
-            window.scrollTo(0, 0);
         }
         setCurrentGuess("");
     };
