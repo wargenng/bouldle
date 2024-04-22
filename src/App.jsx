@@ -14,7 +14,14 @@ import Warn from "./components/warn";
 import Options from "./components/options";
 import Theme from "./components/theme";
 
-const blurAmountList = [35, 20, 15, 10, 5, 2];
+const blurAmountList = [
+    "blur-[35px]",
+    "blur-[20px]",
+    "blur-[15px]",
+    "blur-[10px]",
+    "blur-[5px]",
+    "blur-[2px]",
+];
 const allowedGuesses = blurAmountList.length;
 const todaysClimb =
     climbData.climbs[
@@ -148,7 +155,7 @@ function App() {
                     class="absolute w-screen h-screen bg-primary opacity-20"
                     onclick={handleClose}
                 />
-                <div class="absolute w-3/4 h-fit bg-background rounded-lg shadow-md flex flex-col justify-center">
+                <div class="absolute w-5/6 bg-background rounded-lg shadow-md flex flex-col justify-center">
                     <Information />
                     <button
                         class="bg-red-600 text-white p-2 m-4 rounded-lg font-bold"
@@ -161,56 +168,53 @@ function App() {
                     </div>
                 </div>
             </div>
-            <div class="w-full flex-col items-center justify-center p-6">
-                <div class="w-full flex pb-4">
-                    <h1 class="text-2xl font-bold">bouldle.</h1>
-                    <div class="grow" />
-                    <Theme
-                        isDarkMode={isDarkMode()}
-                        setIsDarkMode={setIsDarkMode}
-                    />
-                    <svg
-                        fill="currentColor"
-                        stroke-width="0"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 16 16"
-                        height="1.4rem"
-                        width="1.4rem"
-                        style="overflow: visible; color: currentcolor;"
-                        class="mt-1"
-                        onclick={() => {
-                            setShowInfo(true);
-                        }}
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M8.568 1.031A6.8 6.8 0 0 1 12.76 3.05a7.06 7.06 0 0 1 .46 9.39 6.85 6.85 0 0 1-8.58 1.74 7 7 0 0 1-3.12-3.5 7.12 7.12 0 0 1-.23-4.71 7 7 0 0 1 2.77-3.79 6.8 6.8 0 0 1 4.508-1.149zM9.04 13.88a5.89 5.89 0 0 0 3.41-2.07 6.07 6.07 0 0 0-.4-8.06 5.82 5.82 0 0 0-7.43-.74 6.06 6.06 0 0 0 .5 10.29 5.81 5.81 0 0 0 3.92.58zM7.375 6h1.25V5h-1.25v1zm1.25 1v4h-1.25V7h1.25z"
-                            clip-rule="evenodd"
-                        ></path>
-                    </svg>
+            <div class="w-full flex-col items-center justify-center">
+                <div class="w-full flex border-b border-primary/20 mb-6">
+                    <div class="p-4 flex w-full ">
+                        <h1 class="text-2xl font-bold ">bouldle.</h1>
+                        <div class="grow" />
+                        <Theme
+                            isDarkMode={isDarkMode()}
+                            setIsDarkMode={setIsDarkMode}
+                        />
+                        <svg
+                            fill="currentColor"
+                            stroke-width="0"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 16 16"
+                            height="1.4rem"
+                            width="1.4rem"
+                            style="overflow: visible; color: currentcolor;"
+                            class="mt-1"
+                            onclick={() => {
+                                setShowInfo(true);
+                            }}
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M8.568 1.031A6.8 6.8 0 0 1 12.76 3.05a7.06 7.06 0 0 1 .46 9.39 6.85 6.85 0 0 1-8.58 1.74 7 7 0 0 1-3.12-3.5 7.12 7.12 0 0 1-.23-4.71 7 7 0 0 1 2.77-3.79 6.8 6.8 0 0 1 4.508-1.149zM9.04 13.88a5.89 5.89 0 0 0 3.41-2.07 6.07 6.07 0 0 0-.4-8.06 5.82 5.82 0 0 0-7.43-.74 6.06 6.06 0 0 0 .5 10.29 5.81 5.81 0 0 0 3.92.58zM7.375 6h1.25V5h-1.25v1zm1.25 1v4h-1.25V7h1.25z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </div>
                 </div>
-                <div class={`w-full items-center justify-center pb-4 flex`}>
+                <div class={`w-full items-center justify-center my-4 flex`}>
                     <div
                         class={`pointer-events-none ${
                             showImage() ? "h-60" : "h-0"
                         } w-60 overflow-hidden flex items-center justify-center object-cover shadow-lg transition-[height] duration-500`}
                     >
                         <img
-                            style={{
-                                filter: `blur(${
-                                    state() !== "playing"
-                                        ? 0
-                                        : blurAmountList[
-                                              submittedGuesses().length
-                                          ]
-                                }px)`,
-                            }}
-                            class={`min-w-full`}
+                            class={`min-w-full ${
+                                state() !== "playing"
+                                    ? "blur-[0px]"
+                                    : blurAmountList[submittedGuesses().length]
+                            }`}
                             src={todaysClimb.image}
                         />
                     </div>
                 </div>
-                <div class="w-full flex justify-start p-3 text-lg font-bold">
+                <div class="w-full flex justify-start px-6 my-4 text-lg font-bold">
                     <div>
                         Guess{" "}
                         {state() !== "playing" &&

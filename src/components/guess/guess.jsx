@@ -34,7 +34,7 @@ export default function Guess(props) {
     );
 
     return (
-        <div class="text-white">
+        <div class="text-white px-6">
             <Warn
                 showWarn={showWarn()}
                 setShowWarn={setShowWarn}
@@ -42,7 +42,7 @@ export default function Guess(props) {
                 link={guess.link}
             />
             <div class=" text-center mb-5">
-                <div class="flex items-center gap-4 mb-5">
+                <div class="flex items-center gap-4 mb-3">
                     <div class="h-20 w-20 rounded-full overflow-hidden object-cover flex items-center justify-center">
                         <img
                             src={guess.image}

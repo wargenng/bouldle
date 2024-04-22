@@ -1,6 +1,6 @@
 export default function Information(props) {
     return (
-        <div class="m-4 text-xl">
+        <div class="m-4 text-md">
             <h1 class="font-bold text-2xl mb-2">how to play</h1>
             <p class="mb-2">
                 1. Try to guess the southern nevada boulder in 6 guesses.
