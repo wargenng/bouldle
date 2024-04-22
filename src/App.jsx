@@ -90,20 +90,6 @@ function App() {
         setShowInfo(false);
     };
 
-    const handleTheme = () => {
-        if (isDarkMode()) {
-            document.body.classList.remove("dark");
-            document.body.classList.add("light");
-            setIsDarkMode(false);
-            localStorage.setItem("theme", "light");
-        } else {
-            document.body.classList.remove("light");
-            document.body.classList.add("dark");
-            setIsDarkMode(true);
-            localStorage.setItem("theme", "dark");
-        }
-    };
-
     const share = async () => {
         try {
             await navigator.clipboard.writeText(
@@ -181,7 +167,7 @@ function App() {
                     <div class="grow" />
                     <Theme
                         isDarkMode={isDarkMode()}
-                        handleTheme={handleTheme}
+                        setIsDarkMode={setIsDarkMode}
                     />
                     <svg
                         fill="currentColor"
