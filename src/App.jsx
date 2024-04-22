@@ -2,7 +2,7 @@ import { createEffect, createSignal } from "solid-js";
 import { getCurrentDateFormattedAsInt } from "./utilities/getCurrentDateFormattedAsInt";
 import { random } from "./utilities/random";
 import climbData from "../scripts/data.json";
-import Guess from "./components/guess";
+import Guess from "./components/guess/guess";
 import "@thisbeyond/solid-select/style.css";
 import "./styles/select.css";
 import { ConfettiExplosion } from "solid-confetti-explosion";
