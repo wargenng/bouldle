@@ -22,9 +22,12 @@ export default function Guess(props) {
             )
         ];
 
-    const handleLink = () => {
-        setShowWarn(true);
-    };
+    const distance = haversine(
+        guess.latitude,
+        guess.longitude,
+        todaysClimb.latitude,
+        todaysClimb.longitude
+    );
 
     return (
         <div class="text-white">
@@ -36,14 +39,14 @@ export default function Guess(props) {
             />
             <div class=" text-center mb-5">
                 <div class="flex items-center gap-4 mb-5">
-                    <div class="h-24 w-24 rounded-full overflow-hidden object-cover flex items-center justify-center">
+                    <div class="h-20 w-20 rounded-full overflow-hidden object-cover flex items-center justify-center">
                         <img
                             src={guess.image}
                             class="min-w-full min-h-full shrink"
                         />
                     </div>
                     <p
-                        class="text-2xl font-bold underline text-primary"
+                        class="text-xl font-bold underline text-primary"
                         onclick={() => {
                             setShowWarn(true);
                         }}
@@ -51,7 +54,7 @@ export default function Guess(props) {
                         {guess.route}
                     </p>
                 </div>
-                <div class="flex gap-3 mb-3 h-24">
+                <div class="flex gap-3 mb-3 h-18">
                     <div
                         class={`w-1/3 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
                             todaysClimb.grade === guess.grade
@@ -100,51 +103,21 @@ export default function Guess(props) {
                     </div>
                     <div
                         class={`grow p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
-                            haversine(
-                                guess.latitude,
-                                guess.longitude,
-                                todaysClimb.latitude,
-                                todaysClimb.longitude
-                            ).distance === 0
+                            distance.distance === 0
                                 ? "bg-green-600"
-                                : haversine(
-                                      guess.latitude,
-                                      guess.longitude,
-                                      todaysClimb.latitude,
-                                      todaysClimb.longitude
-                                  ).distance <= 1
+                                : distance.unit === "ft"
                                 ? "bg-yellow-500"
                                 : "bg-slate-500"
                         }`}
                     >
                         <div>distance</div>
                         <div class="text-2xl h-full flex items-center">
-                            {
-                                haversine(
-                                    guess.latitude,
-                                    guess.longitude,
-                                    todaysClimb.latitude,
-                                    todaysClimb.longitude
-                                ).distance
-                            }{" "}
-                            mi{" "}
-                            {haversine(
-                                guess.latitude,
-                                guess.longitude,
-                                todaysClimb.latitude,
-                                todaysClimb.longitude
-                            ).distance > 0
-                                ? haversine(
-                                      guess.latitude,
-                                      guess.longitude,
-                                      todaysClimb.latitude,
-                                      todaysClimb.longitude
-                                  ).direction
-                                : ""}
+                            {distance.distance} {distance.unit}{" "}
+                            {distance.distance > 0 ? distance.direction : ""}
                         </div>
                     </div>
                 </div>
-                <div class="flex gap-3 w-full h-24">
+                <div class="flex gap-3 w-full h-18">
                     <div
                         class={`w-1/2 p-2 rounded-lg flex flex-col items-center text-sm font-bold ${
                             todaysClimb.area === guess.area

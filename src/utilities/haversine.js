@@ -13,6 +13,7 @@ export function haversine(lat1, lon1, lat2, lon2) {
     const distanceMeters = R * c; // Distance in meters
     const distanceFeet = (distanceMeters * 3.28084) / 5280; // Convert meters to miles
     const roundedDistance = Math.round(distanceFeet * 10) / 10; // Round to nearest whole number
+    const roundedFeet = Math.round(distanceFeet);
 
     // Calculate direction
     const y = Math.sin(Δλ) * Math.cos(φ2);
@@ -40,5 +41,9 @@ export function haversine(lat1, lon1, lat2, lon2) {
         direction = "SE";
     }
 
-    return { distance: roundedDistance, direction };
+    return {
+        distance: roundedDistance === 0 ? roundedFeet : roundedDistance,
+        direction,
+        unit: roundedDistance === 0 ? "ft" : "mi",
+    };
 }

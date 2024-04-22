@@ -47,14 +47,11 @@ function App() {
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
-        if (lastGuess?.toLowerCase() === todaysClimb.route.toLowerCase()) {
-            setShowImage(true);
+        if (lastGuess?.toLowerCase() === todaysClimb.route.toLowerCase())
             return "won";
-        }
-        if (submittedGuesses().length >= allowedGuesses) {
-            setShowImage(true);
-            return "lost";
-        }
+
+        if (submittedGuesses().length >= allowedGuesses) return "lost";
+
         return "playing";
     };
 
@@ -209,8 +206,8 @@ function App() {
                 <div class={`w-full items-center justify-center pb-4 flex`}>
                     <div
                         class={`pointer-events-none ${
-                            showImage() ? "h-72" : "h-0"
-                        } w-72 overflow-hidden flex items-center justify-center object-cover shadow-lg transition-[height] duration-500`}
+                            showImage() ? "h-60" : "h-0"
+                        } w-60 overflow-hidden flex items-center justify-center object-cover shadow-lg transition-[height] duration-500`}
                     >
                         <img
                             style={{
@@ -227,41 +224,42 @@ function App() {
                         />
                     </div>
                 </div>
+                <div class="w-full flex justify-start p-3 text-lg font-bold">
+                    <div>
+                        Guess{" "}
+                        {state() !== "playing" &&
+                        submittedGuesses().length < allowedGuesses
+                            ? submittedGuesses().length
+                            : submittedGuesses().length < allowedGuesses
+                            ? submittedGuesses().length + 1
+                            : "X"}{" "}
+                        of {allowedGuesses}
+                    </div>
+                    <div class="grow"></div>
+                    <div
+                        class=""
+                        onclick={() => {
+                            setShowImage(!showImage());
+                        }}
+                    >
+                        {showImage() ? (
+                            <>
+                                ▼ <span class="underline">hide</span>
+                            </>
+                        ) : (
+                            <>
+                                ▲ <span class="underline">show</span>
+                            </>
+                        )}
+                        <span class="underline"> image</span>
+                    </div>
+                </div>
                 {state() === "playing" ? (
-                    <>
-                        <div class="w-full flex justify-start p-3 text-lg font-bold">
-                            <div>
-                                Guess{" "}
-                                {submittedGuesses().length < allowedGuesses
-                                    ? submittedGuesses().length + 1
-                                    : allowedGuesses}{" "}
-                                of {allowedGuesses}
-                            </div>
-                            <div class="grow"></div>
-                            <div
-                                class=""
-                                onclick={() => {
-                                    setShowImage(!showImage());
-                                }}
-                            >
-                                {showImage() ? (
-                                    <>
-                                        ▼ <span class="underline">hide</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        ▲ <span class="underline">show</span>
-                                    </>
-                                )}
-                                <span class="underline"> image</span>
-                            </div>
-                        </div>
-                        <Options
-                            climbData={climbData}
-                            setCurrentGuess={setCurrentGuess}
-                            submitGuess={submitGuess}
-                        />
-                    </>
+                    <Options
+                        climbData={climbData}
+                        setCurrentGuess={setCurrentGuess}
+                        submitGuess={submitGuess}
+                    />
                 ) : (
                     <>
                         <div class={`text-2xl font-bold text-center mb-3`}>
