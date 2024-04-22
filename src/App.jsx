@@ -47,6 +47,10 @@ function App() {
             document.body.classList.add(selectedTheme);
             if (selectedTheme === "light") setIsDarkMode(false);
             else setIsDarkMode(true);
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.body.classList.add("dark");
+            setIsDarkMode(true);
+            localStorage.setItem("theme", "dark");
         } else {
             document.body.classList.add("light");
         }
