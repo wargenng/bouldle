@@ -27,7 +27,7 @@ export default function Information(props) {
             <p class="ml-4 mb-2">
                 D. <span class="font-bold">Votes</span> is off by 50 point.
             </p>
-            <p>4. Image gets less blurry the more you guess.</p>
+            <p class="mb-2">4. Image gets less blurry the more you guess.</p>
             <p>5. New climb is available at midnight local time.</p>
         </div>
     );
