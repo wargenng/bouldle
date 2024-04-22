@@ -18,11 +18,13 @@ code {
 
 .dark {
   --background: 18, 18, 19;
+  --list-background: 39, 39, 41;
   --primary: 255,255,255;
 }
 
 .light {
   --background: 255,255,255;
+  --list-background: 255,255,255;
   --primary: 0,0,0;
 }
 

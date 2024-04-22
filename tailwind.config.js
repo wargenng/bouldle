@@ -5,6 +5,7 @@ export default {
         extend: {
             colors: {
                 background: "rgba(var(--background))",
+                "list-background": "rgba(var(--list-background))",
                 primary: "rgba(var(--primary))",
             },
         },

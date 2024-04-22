@@ -18,11 +18,12 @@
     
   }
   .custom .solid-select-option[data-focused=true] {
-    background-color: rgba(var(--background));
+    background-color: rgba(var(--list-background));
   }
 
   .custom .solid-select-list {
-    background-color: rgba(var(--background));
+    background-color: rgba(var(--list-background));
     height: 220px;
-    border-radius: 20px;
+    border-radius: 0px 0px 20px 20px;
+    width: 85vw;
   }
