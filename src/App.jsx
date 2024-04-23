@@ -236,8 +236,8 @@ function App() {
                         />
                     </div>
                 </div>
-                <div class="w-full grid grid-cols-3 justify-start px-6 my-4 text-lg font-bold">
-                    <div>
+                <div class="w-full grid grid-cols-12 justify-start px-6 my-4 text-lg font-bold">
+                    <div class="col-span-5">
                         Guess{" "}
                         {state() !== "playing" &&
                         submittedGuesses().length < allowedGuesses
@@ -248,7 +248,7 @@ function App() {
                         of {allowedGuesses}
                     </div>
 
-                    <div class="grow flex items-center justify-center">
+                    <div class="grow flex items-center justify-center col-span-2">
                         {isExpanded() ? (
                             <svg
                                 fill="currentColor"
@@ -282,7 +282,7 @@ function App() {
                         )}
                     </div>
                     <div
-                        class="flex justify-end"
+                        class="flex justify-end col-span-5"
                         onclick={() => {
                             setShowImage(!showImage());
                         }}
@@ -345,7 +345,7 @@ function App() {
                         </div>
                     </>
                 )}
-                <div class="py-4 h-full">
+                <div class="py-4">
                     {submittedGuesses()
                         .map((guess) => <Guess guess={guess} />)
                         .reverse()}
