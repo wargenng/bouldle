@@ -1,6 +1,6 @@
 import { createSignal, createEffect } from "solid-js";
-import Theme from "./theme";
-import Info from "../assets/info";
+import Theme from "./components/theme";
+import Info from "../../assets/info";
 
 export default function NavBar(props) {
     const [isDarkMode, setIsDarkMode] = createSignal(false);

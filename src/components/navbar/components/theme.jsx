@@ -1,5 +1,5 @@
-import Dark from "../assets/dark";
-import Light from "../assets/light";
+import Dark from "../../../assets/dark";
+import Light from "../../../assets/light";
 
 export default function Theme(props) {
     const handleTheme = () => {

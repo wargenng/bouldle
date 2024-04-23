@@ -1,4 +1,4 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createSignal, startTransition } from "solid-js";
 import { getCurrentDateFormattedAsInt } from "./utilities/getCurrentDateFormattedAsInt";
 import { random } from "./utilities/random";
 import climbData from "../scripts/data.json";
@@ -13,18 +13,12 @@ import Close from "./assets/close";
 import Warn from "./components/warn";
 import Options from "./components/options";
 import Footer from "./components/footer";
-import NavBar from "./components/navbar";
-import Toolbar from "./components/toolbar";
+import NavBar from "./components/navbar/navbar";
 import Share from "./assets/share";
+import { blurAmountList } from "./utilities/blurAmountList";
+import Blurry from "./components/blurry/blurry";
+import Results from "./components/results";
 
-const blurAmountList = [
-    "blur-[35px]",
-    "blur-[20px]",
-    "blur-[15px]",
-    "blur-[10px]",
-    "blur-[5px]",
-    "blur-[2px]",
-];
 const allowedGuesses = blurAmountList.length;
 const todaysClimb =
     climbData.climbs[
@@ -41,9 +35,6 @@ function App() {
     const [showInfo, setShowInfo] = createSignal(true);
     const [currentWarn, setCurrentWarn] = createSignal("");
     const [showWarn, setShowWarn] = createSignal(false);
-    const [showWarnTodayClimb, setShowWarnTodayClimb] = createSignal(false);
-    const [showImage, setShowImage] = createSignal(true);
-    const [isExpanded, setIsExpanded] = createSignal(false);
 
     createEffect(() => {
         document.addEventListener("keydown", (event) => {
@@ -101,46 +92,8 @@ function App() {
         setShowInfo(false);
     };
 
-    const share = async () => {
-        window.scrollTo(0, 0);
-        try {
-            await navigator.clipboard.writeText(
-                `bouldle #${daysBetweenDates(
-                    "20240419",
-                    getCurrentDateFormattedAsInt().toString()
-                )} 🪨 ${
-                    state() === "won" ? submittedGuesses().length : "X"
-                }/${allowedGuesses} ${
-                    state() === "won"
-                        ? "⬜".repeat(submittedGuesses().length - 1) + "🟩"
-                        : "⬜".repeat(submittedGuesses().length)
-                } bouldle.com`
-            );
-            console.log("Text copied to clipboard successfully!");
-            warn("text successfully copied!");
-        } catch (err) {
-            console.error("Failed to copy text: ", err);
-        }
-    };
-
     return (
-        <div class="flex justify-center w-full bg-background">
-            {state() === "won" ? (
-                <div class="flex items-center justify-center absolute w-full pointer-events-none">
-                    <ConfettiExplosion
-                        particleCount={100}
-                        stageHeight={2000}
-                        stageWidth={400}
-                        duration={5000}
-                    />
-                </div>
-            ) : null}
-            <Warn
-                showWarn={showWarnTodayClimb()}
-                setShowWarn={setShowWarnTodayClimb}
-                route={todaysClimb.route}
-                link={todaysClimb.link}
-            />
+        <div class={`flex justify-center w-full bg-background`}>
             <div
                 class={`absolute pointer-events-none rounded-lg overflow-hidden transition-transform ${
                     showWarn() ? "translate-y-3" : "translate-y-[-4rem]"
@@ -155,7 +108,6 @@ function App() {
                     showInfo() ? "flex" : "hidden"
                 } items-center justify-center`}
             >
-                {" "}
                 <div
                     class="absolute w-screen h-screen bg-primary opacity-20"
                     onclick={handleClose}
@@ -175,36 +127,10 @@ function App() {
             </div>
             <div class="w-full flex-col items-center justify-center">
                 <NavBar setShowInfo={setShowInfo} />
-                <div class={`w-full items-center justify-center my-4 flex`}>
-                    <div
-                        class={`pointer-events-none ${
-                            showImage() && isExpanded()
-                                ? "h-96"
-                                : showImage()
-                                ? "h-60"
-                                : "h-0"
-                        } ${
-                            isExpanded() ? "w-96" : "w-60"
-                        } overflow-hidden flex items-center justify-center object-cover shadow-lg transition-all duration-500`}
-                    >
-                        <img
-                            class={`min-w-full ${
-                                state() !== "playing"
-                                    ? "blur-[0px]"
-                                    : blurAmountList[submittedGuesses().length]
-                            }`}
-                            src={todaysClimb.image}
-                        />
-                    </div>
-                </div>
-                <Toolbar
+                <Blurry
                     state={state()}
                     submittedGuessesLength={submittedGuesses().length}
-                    allowedGuesses={allowedGuesses}
-                    showImage={showImage()}
-                    setShowImage={setShowImage}
-                    setIsExpanded={setIsExpanded}
-                    isExpanded={isExpanded()}
+                    image={todaysClimb.image}
                 />
                 {state() === "playing" ? (
                     <Options
@@ -213,29 +139,13 @@ function App() {
                         submitGuess={submitGuess}
                     />
                 ) : (
-                    <>
-                        <div class={`text-2xl font-bold text-center mb-3`}>
-                            {state() === "won" ? "you won!" : "you lost!"}{" "}
-                            {`the climb is: `}
-                            <span
-                                class="underline"
-                                onclick={() => {
-                                    setShowWarnTodayClimb(true);
-                                }}
-                            >
-                                {todaysClimb.route}
-                            </span>
-                        </div>
-                        <div class="w-full flex justify-center">
-                            <button
-                                class="bg-slate-500 text-white py-3 px-4 rounded-lg text-lg font-bold flex items-center"
-                                onclick={share}
-                            >
-                                share results
-                                <Share />
-                            </button>
-                        </div>
-                    </>
+                    <Results
+                        state={state()}
+                        allowedGuesses={allowedGuesses}
+                        submittedGuessesLength={submittedGuesses().length}
+                        warn={warn}
+                        todaysClimb={todaysClimb}
+                    />
                 )}
                 <div class="py-4">
                     {submittedGuesses()

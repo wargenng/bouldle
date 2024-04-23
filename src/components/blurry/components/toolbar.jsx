@@ -1,5 +1,5 @@
-import Contract from "../assets/contract";
-import Expand from "../assets/expand";
+import Contract from "../../../assets/contract";
+import Expand from "../../../assets/expand";
 
 export default function Toolbar(props) {
     return (

@@ -4,7 +4,6 @@ import { getCurrentDateFormattedAsInt } from "../../utilities/getCurrentDateForm
 import { createSignal } from "solid-js";
 import Warn from "../warn";
 import Details from "./components/details";
-import gradeData from "../../../scripts/grades.json";
 import { compareGuessToAnswer } from "./utilities/compareGuessToAnswer";
 
 export default function Guess(props) {
