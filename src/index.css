@@ -21,6 +21,7 @@ code {
     --list-background: 39, 39, 41;
     --primary: 255, 255, 255;
     --warn: 239, 68, 68;
+    --absent: 58, 58, 60;
 }
 
 .light {
@@ -28,4 +29,5 @@ code {
     --list-background: 255, 255, 255;
     --primary: 0, 0, 0;
     --warn: 239, 68, 68;
+    --absent: 100, 116, 139;
 }

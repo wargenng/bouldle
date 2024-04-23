@@ -9,7 +9,7 @@ import { ConfettiExplosion } from "solid-confetti-explosion";
 import Information from "./components/information";
 import { delay } from "./utilities/delay";
 import { daysBetweenDates } from "./utilities/daysBetweenDates";
-import Close from "./components/close";
+import Close from "./assets/close";
 import Warn from "./components/warn";
 import Options from "./components/options";
 import Theme from "./components/theme";

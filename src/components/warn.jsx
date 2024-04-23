@@ -1,4 +1,4 @@
-import Close from "./close";
+import Close from "../assets/close";
 
 export default function Warn(props) {
     return (
@@ -28,7 +28,7 @@ export default function Warn(props) {
                 </div>
                 <div class="flex m-4 gap-2">
                     <a
-                        class="bg-slate-500 text-white p-2 rounded-lg font-bold w-1/2 text-center"
+                        class="bg-absent text-white p-2 rounded-lg font-bold w-1/2 text-center"
                         href={props.link}
                     >
                         redirect me!

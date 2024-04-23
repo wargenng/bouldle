@@ -8,6 +8,7 @@ export default {
                 "list-background": "rgba(var(--list-background))",
                 primary: "rgba(var(--primary))",
                 warn: "rgba(var(--warn))",
+                absent: "rgba(var(--absent))",
             },
         },
     },

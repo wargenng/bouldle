@@ -105,5 +105,5 @@ export function compareGuessToAnswer(guess, todaysClimb) {
 }
 
 function findBgColor(correct, almost) {
-    return correct ? "bg-green-600" : almost ? "bg-yellow-500" : "bg-slate-500";
+    return correct ? "bg-green-600" : almost ? "bg-yellow-500" : "bg-absent";
 }
