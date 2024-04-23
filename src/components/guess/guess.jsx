@@ -1,15 +1,11 @@
 import climbData from "../../../scripts/data.json";
 import { random } from "../../utilities/random";
 import { getCurrentDateFormattedAsInt } from "../../utilities/getCurrentDateFormattedAsInt";
-import { haversine } from "../../utilities/haversine";
 import { createSignal } from "solid-js";
 import Warn from "../warn";
-import Grade from "./components/grade";
-import Length from "./components/length";
-import Distance from "./components/distance";
-import Area from "./components/area";
-import Stars from "./components/stars";
-import Votes from "./components/votes";
+import Details from "./components/details";
+import gradeData from "../../../scripts/grades.json";
+import { compareGuessToAnswer } from "./utilities/compareGuessToAnswer";
 
 export default function Guess(props) {
     const [showWarn, setShowWarn] = createSignal(false);
@@ -26,12 +22,7 @@ export default function Guess(props) {
             )
         ];
 
-    const distance = haversine(
-        guess.latitude,
-        guess.longitude,
-        todaysClimb.latitude,
-        todaysClimb.longitude
-    );
+    const details = compareGuessToAnswer(guess, todaysClimb);
 
     return (
         <div class="text-white px-6">
@@ -59,28 +50,14 @@ export default function Guess(props) {
                     </p>
                 </div>
                 <div class="grid grid-cols-12 gap-3">
-                    <Grade
-                        todaysClimb={todaysClimb.grade}
-                        guess={guess.grade}
-                    />
-                    <Length
-                        todaysClimb={todaysClimb.length}
-                        guess={guess.length}
-                    />
-                    <Distance
-                        distance={distance.distance}
-                        unit={distance.unit}
-                        direction={distance.direction}
-                    />
-                    <Area todaysClimb={todaysClimb.area} guess={guess.area} />
-                    <Stars
-                        todaysClimb={todaysClimb.stars}
-                        guess={guess.stars}
-                    />
-                    <Votes
-                        todaysClimb={todaysClimb.votes}
-                        guess={guess.votes}
-                    />
+                    {details.map((detail) => (
+                        <Details
+                            title={detail.title}
+                            colSpan={detail.colSpan}
+                            bgColor={detail.bgColor}
+                            value={detail.value}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
