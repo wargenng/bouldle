@@ -1,5 +1,3 @@
-import { createSignal } from "solid-js";
-
 export default function Theme(props) {
     const handleTheme = () => {
         document.body.classList.remove(props.isDarkMode ? "dark" : "light");
