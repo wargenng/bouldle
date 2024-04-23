@@ -57,6 +57,12 @@ function App() {
         } else {
             document.body.classList.add("light");
         }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                submitGuess();
+            }
+        });
     });
 
     const state = () => {
@@ -71,6 +77,7 @@ function App() {
 
     const submitGuess = () => {
         window.scrollTo(0, 0);
+        if (state() !== "playing") return;
         if (
             !climbData.climbs
                 .map((climb) => climb.route.toLowerCase())

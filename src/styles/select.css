@@ -25,5 +25,6 @@
     background-color: rgba(var(--list-background));
     height: 220px;
     border-radius: 0px 0px 20px 20px;
-    width: 85vw;
+    width: 100%;
+    overflow-x: hidden;
   }
