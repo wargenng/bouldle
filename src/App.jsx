@@ -13,6 +13,7 @@ import Close from "./components/close";
 import Warn from "./components/warn";
 import Options from "./components/options";
 import Theme from "./components/theme";
+import Footer from "./components/footer";
 
 const blurAmountList = [
     "blur-[35px]",
@@ -185,7 +186,7 @@ function App() {
                 </div>
             </div>
             <div class="w-full flex-col items-center justify-center">
-                <div class="w-full flex border-b border-primary/20 mb-6">
+                <navbar class="w-full flex border-b border-primary/20 mb-6">
                     <div class="p-4 flex w-full ">
                         <h1 class="text-2xl font-bold ">bouldle.</h1>
                         <div class="grow" />
@@ -213,7 +214,7 @@ function App() {
                             ></path>
                         </svg>
                     </div>
-                </div>
+                </navbar>
                 <div class={`w-full items-center justify-center my-4 flex`}>
                     <div
                         class={`pointer-events-none ${
@@ -280,21 +281,20 @@ function App() {
                         )}
                     </div>
                     <div
-                        class=""
+                        class="flex justify-end"
                         onclick={() => {
                             setShowImage(!showImage());
                         }}
                     >
                         {showImage() ? (
                             <>
-                                ▼ <span class="underline">hide</span>
+                                <span class="underline mr-1">hide image</span>▼
                             </>
                         ) : (
                             <>
-                                ▲ <span class="underline">show</span>
+                                <span class="underline mr-1">show image</span>▲
                             </>
                         )}
-                        <span class="underline"> image</span>
                     </div>
                 </div>
                 {state() === "playing" ? (
@@ -344,11 +344,12 @@ function App() {
                         </div>
                     </>
                 )}
-                <div class="py-4">
+                <div class="py-4 h-full">
                     {submittedGuesses()
                         .map((guess) => <Guess guess={guess} />)
                         .reverse()}
                 </div>
+                <Footer />
             </div>
         </div>
     );
