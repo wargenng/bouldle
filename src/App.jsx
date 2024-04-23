@@ -25,8 +25,10 @@ const blurAmountList = [
 const allowedGuesses = blurAmountList.length;
 const todaysClimb =
     climbData.climbs[
-        Math.floor(
-            random(getCurrentDateFormattedAsInt()) * climbData.climbs.length
+        Math.abs(
+            Math.floor(
+                random(getCurrentDateFormattedAsInt()) * climbData.climbs.length
+            )
         )
     ];
 
@@ -39,6 +41,7 @@ function App() {
     const [showWarnTodayClimb, setShowWarnTodayClimb] = createSignal(false);
     const [showImage, setShowImage] = createSignal(true);
     const [isDarkMode, setIsDarkMode] = createSignal(false);
+    const [isExpanded, setIsExpanded] = createSignal(false);
 
     createEffect(() => {
         const selectedTheme = localStorage.getItem("theme");
@@ -207,8 +210,12 @@ function App() {
                 <div class={`w-full items-center justify-center my-4 flex`}>
                     <div
                         class={`pointer-events-none ${
-                            showImage() ? "h-60" : "h-0"
-                        } w-60 overflow-hidden flex items-center justify-center object-cover shadow-lg transition-[height] duration-500`}
+                            showImage() && isExpanded()
+                                ? "h-96 w-96"
+                                : showImage()
+                                ? "h-60 w-60"
+                                : "h-0 w-0"
+                        } overflow-hidden flex items-center justify-center object-cover shadow-lg transition-all duration-500`}
                     >
                         <img
                             class={`min-w-full ${
@@ -231,7 +238,40 @@ function App() {
                             : "X"}{" "}
                         of {allowedGuesses}
                     </div>
-                    <div class="grow"></div>
+
+                    <div class="grow flex items-center justify-center">
+                        {isExpanded() ? (
+                            <svg
+                                fill="currentColor"
+                                stroke-width="0"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                                height="1em"
+                                width="1em"
+                                onclick={() => {
+                                    setIsExpanded(!isExpanded());
+                                }}
+                                style="overflow: visible; color: currentcolor;"
+                            >
+                                <path d="M439 7c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8H296c-13.3 0-24-10.7-24-24V72c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87zM72 272h144c13.3 0 24 10.7 24 24v144c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0L7 473c-9.4-9.4-9.4-24.6 0-33.9l87-87L55 313c-6.9-6.9-8.9-17.2-5.2-26.2S62.3 272 72 272z"></path>
+                            </svg>
+                        ) : (
+                            <svg
+                                fill="currentColor"
+                                stroke-width="0"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                                height="1em"
+                                width="1em"
+                                onclick={() => {
+                                    setIsExpanded(!isExpanded());
+                                }}
+                                style="overflow: visible; color: currentcolor;"
+                            >
+                                <path d="M344 0h144c13.3 0 24 10.7 24 24v144c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM168 512H24c-13.3 0-24-10.7-24-24V344c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"></path>
+                            </svg>
+                        )}
+                    </div>
                     <div
                         class=""
                         onclick={() => {

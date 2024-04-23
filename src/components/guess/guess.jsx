@@ -17,8 +17,11 @@ export default function Guess(props) {
 
     const todaysClimb =
         climbData.climbs[
-            Math.floor(
-                random(getCurrentDateFormattedAsInt()) * climbData.climbs.length
+            Math.abs(
+                Math.floor(
+                    random(getCurrentDateFormattedAsInt()) *
+                        climbData.climbs.length
+                )
             )
         ];
 

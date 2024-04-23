@@ -31,7 +31,7 @@ export default function Warn(props) {
                         class="bg-slate-500 text-white p-2 rounded-lg font-bold w-1/2 text-center"
                         href={props.link}
                     >
-                        let's grow!
+                        redirect me!
                     </a>
                     <button
                         class="bg-red-600 text-white p-2 rounded-lg font-bold w-1/2"
