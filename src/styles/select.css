@@ -1,13 +1,14 @@
 .custom .solid-select-container {
   background-color: rgba(var(--background));
+  overflow-x: hidden;
   
   }
   .custom .solid-select-control {
-    outline-color: #707070;
-    border-color: #707070;
     height: 3rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
     align-items: center;
+    border: 0px;
+    overflow: hidden;
   }
   .custom .solid-select-placeholder {
     

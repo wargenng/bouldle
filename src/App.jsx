@@ -234,7 +234,7 @@ function App() {
                         />
                     </div>
                 </div>
-                <div class="w-full flex justify-start px-6 my-4 text-lg font-bold">
+                <div class="w-full grid grid-cols-3 justify-start px-6 my-4 text-lg font-bold">
                     <div>
                         Guess{" "}
                         {state() !== "playing" &&
