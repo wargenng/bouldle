@@ -14,18 +14,19 @@ export default function Information(props) {
                 close match. A close...
             </p>
             <p class="ml-4 mb-2">
-                A. <span class="font-bold">Grade</span>,{" "}
-                <span class="font-bold">Distance </span>
-                is off by at most 1.
+                A. <span class="font-bold">Grade</span>, is off by at most 1.
             </p>
             <p class="ml-4 mb-2">
                 B. <span class="font-bold">Length</span> is off by 2 ft.
             </p>
             <p class="ml-4 mb-2">
-                C. <span class="font-bold">Stars</span> is off by 0.5 points.
+                C. <span class="font-bold">Distance</span> is off by 528 ft.
             </p>
             <p class="ml-4 mb-2">
-                D. <span class="font-bold">Votes</span> is off by 50 point.
+                D. <span class="font-bold">Stars</span> is off by 0.5 points.
+            </p>
+            <p class="ml-4 mb-2">
+                E. <span class="font-bold">Votes</span> is off by 50 point.
             </p>
             <p class="mb-2">4. Image gets less blurry the more you guess.</p>
             <p>5. New climb is available at midnight local time.</p>
