@@ -7,6 +7,7 @@ export default {
                 background: "rgba(var(--background))",
                 "list-background": "rgba(var(--list-background))",
                 primary: "rgba(var(--primary))",
+                warn: "rgba(var(--warn))",
             },
         },
     },

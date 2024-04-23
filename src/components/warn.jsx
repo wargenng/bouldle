@@ -34,7 +34,7 @@ export default function Warn(props) {
                         redirect me!
                     </a>
                     <button
-                        class="bg-red-600 text-white p-2 rounded-lg font-bold w-1/2"
+                        class="bg-warn text-white p-2 rounded-lg font-bold w-1/2"
                         onclick={() => {
                             props.setShowWarn(false);
                         }}

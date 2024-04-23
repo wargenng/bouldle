@@ -159,7 +159,7 @@ function App() {
                     showWarn() ? "translate-y-3" : "translate-y-[-4rem]"
                 }`}
             >
-                <div class="bg-red-500 text-white font-bold p-2">
+                <div class="bg-warn text-white font-bold p-2">
                     {currentWarn()}
                 </div>
             </div>
@@ -176,7 +176,7 @@ function App() {
                 <div class="absolute w-5/6 bg-background rounded-lg shadow-md flex flex-col justify-center">
                     <Information />
                     <button
-                        class="bg-red-600 text-white p-2 m-4 rounded-lg font-bold"
+                        class="bg-warn text-white p-2 m-4 rounded-lg font-bold"
                         onclick={handleClose}
                     >
                         close
