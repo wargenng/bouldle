@@ -13,7 +13,7 @@ export default function Warn(props) {
                     props.setShowWarn(false);
                 }}
             />
-            <div class="absolute w-3/4 h-fit bg-background rounded-lg shadow-md flex flex-col justify-center">
+            <div class="absolute w-3/4 h-fit bg-background rounded-lg shadow-md flex flex-col justify-center text-primary">
                 <div class="m-4">
                     <h1 class="mb-4 font-bold text-2xl">Warning!</h1>
                     <p class="text-lg">
