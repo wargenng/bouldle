@@ -62,6 +62,7 @@ function App() {
         document.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
                 submitGuess();
+                document.activeElement.blur();
             }
         });
     });
