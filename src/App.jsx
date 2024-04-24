@@ -70,7 +70,9 @@ function App() {
                 )}
                 <div class="py-4">
                     {submittedGuesses()
-                        .map((guess) => <Guess guess={guess} />)
+                        .map((guess) => (
+                            <Guess guess={guess} todaysClimb={todaysClimb} />
+                        ))
                         .reverse()}
                 </div>
                 <Footer />

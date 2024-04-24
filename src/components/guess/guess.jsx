@@ -14,17 +14,7 @@ export default function Guess(props) {
             climbData.climbs.map((climb) => climb.route).indexOf(props.guess)
         ];
 
-    const todaysClimb =
-        climbData.climbs[
-            Math.abs(
-                Math.floor(
-                    random(getCurrentDateFormattedAsInt()) *
-                        climbData.climbs.length
-                )
-            )
-        ];
-
-    const details = compareGuessToAnswer(guess, todaysClimb);
+    const details = compareGuessToAnswer(guess, props.todaysClimb);
 
     return (
         <div class="text-white px-6">
