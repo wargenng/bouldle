@@ -32,11 +32,11 @@ export default function Toolbar(props) {
             >
                 {props.showImage ? (
                     <>
-                        <span class="underline mr-1">hide image</span>▼
+                        <span class="underline mr-1">hide image</span>▲
                     </>
                 ) : (
                     <>
-                        <span class="underline mr-1">show image</span>▲
+                        <span class="underline mr-1">show image</span>▼
                     </>
                 )}
             </div>
