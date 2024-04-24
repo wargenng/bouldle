@@ -32,7 +32,8 @@ export default function NavBar(props) {
                 />
                 <button
                     onclick={() => {
-                        props.setShowInfo(true);
+                        props.setShowDialog(true);
+                        console.log("IN HERE");
                     }}
                 >
                     <Info />

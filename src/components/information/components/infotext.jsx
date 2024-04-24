@@ -1,4 +1,4 @@
-export default function Information(props) {
+export default function InformationText() {
     return (
         <div class="m-4 text-md">
             <h1 class="font-bold text-2xl mb-2">how to play</h1>
