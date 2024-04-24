@@ -14,7 +14,7 @@ export default function Results(props) {
                 `bouldle #${daysBetweenDates(
                     "20240419",
                     getCurrentDateFormattedAsInt().toString()
-                )} ⛰️ ${
+                )} 🪨 ${
                     props.state === "won" ? props.submittedGuessesLength : "X"
                 }/${props.allowedGuesses} ${
                     props.state === "won"
