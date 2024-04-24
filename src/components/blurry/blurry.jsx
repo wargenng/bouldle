@@ -19,16 +19,20 @@ export default function Blurry(props) {
                             : "h-0"
                     } ${
                         isExpanded() ? "w-96" : "w-60"
-                    } overflow-hidden flex items-center justify-center object-cover shadow-lg transition-all duration-500`}
+                    } overflow-hidden flex items-center justify-center object-cover transition-all duration-500`}
                 >
-                    <img
-                        class={`min-w-full ${
-                            props.state !== "playing"
-                                ? "blur-[0px]"
-                                : blurAmountList[props.submittedGuessesLength]
-                        }`}
-                        src={props.image}
-                    />
+                    <div class='overflow-hidden shadow-lg'>
+                        <img
+                            class={`min-w-full ${
+                                props.state !== "playing"
+                                    ? "blur-[0px]"
+                                    : blurAmountList[
+                                          props.submittedGuessesLength
+                                      ]
+                            }`}
+                            src={props.image}
+                        />
+                    </div>
                 </div>
             </div>
             <Toolbar
