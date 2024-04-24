@@ -19,7 +19,7 @@ export default function Blurry(props) {
                             : "h-0"
                     } ${
                         isExpanded() ? "w-96" : "w-60"
-                    } overflow-hidden flex items-center justify-center object-cover transition-all duration-500`}
+                    } flex items-center justify-center object-cover transition-all duration-500`}
                 >
                     <div class='overflow-hidden shadow-lg'>
                         <img
