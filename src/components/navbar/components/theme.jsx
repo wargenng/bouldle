@@ -21,7 +21,7 @@ export default function Theme() {
 
     return (
         <button onclick={handleTheme} class="mr-2">
-            {!isDarkMode() ? <Light /> : <Dark />}
+            {isDarkMode() ? <Light /> : <Dark />}
         </button>
     );
 }
