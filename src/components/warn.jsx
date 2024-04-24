@@ -3,17 +3,25 @@ import Close from "../assets/close";
 export default function Warn(props) {
     return (
         <div
-            class={`fixed top-0 left-0 w-full h-full z-10 transition-opacity ${
-                props.showWarn ? "flex" : "hidden"
+            class={`fixed top-0 left-0 w-full h-full z-10 transition-opacity flex ${
+                props.showWarn ? "pointer-events-all" : "pointer-events-none"
             } items-center justify-center`}
         >
             <div
-                class="absolute w-screen h-screen bg-primary opacity-20"
+                class={`absolute w-screen h-screen bg-black ${
+                    props.showWarn ? "opacity-50" : "opacity-0"
+                }`}
                 onclick={() => {
                     props.setShowWarn(false);
                 }}
             />
-            <div class="absolute w-3/4 h-fit bg-background rounded-lg shadow-md flex flex-col justify-center text-primary">
+            <div
+                class={`absolute w-3/4 bg-list-background rounded-lg shadow-md flex flex-col justify-center transition-all duration-500 text-primary${
+                    props.showWarn
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-10 opacity-0"
+                }`}
+            >
                 <div class="m-4">
                     <h1 class="mb-4 font-bold text-2xl">Warning!</h1>
                     <p class="text-lg">
