@@ -16,7 +16,7 @@ export default function Warn(props) {
                 }}
             />
             <div
-                class={`absolute w-3/4 bg-list-background rounded-lg shadow-md flex flex-col justify-center transition-all duration-500 text-primary${
+                class={`absolute w-3/4 bg-list-background rounded-lg shadow-md flex flex-col justify-center transition-all duration-500 text-primary ${
                     props.showWarn
                         ? "translate-y-0 opacity-100"
                         : "translate-y-10 opacity-0"
