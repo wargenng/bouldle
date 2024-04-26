@@ -6,8 +6,7 @@ export default function Toolbar(props) {
         <div class="w-full grid grid-cols-12 justify-start px-6 my-4 text-lg font-bold">
             <div class="col-span-5">
                 Guess{" "}
-                {props.state !== "playing" &&
-                props.submittedGuessesLength < props.allowedGuesses
+                {props.state === "won"
                     ? props.submittedGuessesLength
                     : props.submittedGuessesLength < props.allowedGuesses
                     ? props.submittedGuessesLength + 1
