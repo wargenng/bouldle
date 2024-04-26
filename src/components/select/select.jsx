@@ -76,11 +76,11 @@ export default function Select(props) {
                 onclick={handleDrawer}
             />
             <div
-                class={`fixed left-0 w-screen h-2/3 bg-background rounded-t-lg transition-[bottom] duration-300 z-20 ${
+                class={`fixed left-0 w-screen h-2/3 bg-background rounded-t-lg transition-[bottom] duration-300 z-20 border-t border-primary/20 ${
                     showDrawer() ? "bottom-0" : "bottom-[-700px]"
                 }`}
             >
-                <div class="flex w-full gap-4 items-center p-4 border-b border-neutral-700">
+                <div class="flex w-full gap-4 items-center p-4 border-b border-primary/20">
                     <Search />
                     <input
                         class="bg-inherit border-none grow p-2"
@@ -105,7 +105,7 @@ export default function Select(props) {
                     <button
                         onclick={handleDrawer}
                         class={`flex justify-center items-center transition-all duration-100 ${
-                            showDrawer() ? "rotate-0" : "rotate-180"
+                            showDrawer() ? "rotate-180" : "rotate-0"
                         }`}
                     >
                         <Chevron />
