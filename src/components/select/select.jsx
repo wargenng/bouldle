@@ -107,7 +107,7 @@ export default function Select(props) {
                         data().map((area) => {
                             return (
                                 <>
-                                    <div class="sticky top-0 bg-background w-full py-2 flex gap-4">
+                                    <div class="sticky top-0 bg-background w-full py-2 flex gap-4 font-semibold">
                                         <h1 class="text-md brightness-50">
                                             {area.name.toUpperCase()}
                                         </h1>
