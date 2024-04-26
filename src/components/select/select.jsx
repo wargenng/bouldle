@@ -6,6 +6,7 @@ import Search from "./assets/search";
 export default function Select(props) {
     const [showDrawer, setShowDrawer] = createSignal(false);
     const [data, setData] = createSignal(props.data);
+    const [isFocused, setIsFocused] = createSignal(false);
 
     createEffect(() => {
         setData(
@@ -82,12 +83,23 @@ export default function Select(props) {
                 <div class="flex w-full gap-4 items-center p-4 border-b border-neutral-700">
                     <Search />
                     <input
-                        class="bg-inherit border-none grow"
+                        class="bg-inherit border-none grow p-2"
                         placeholder="search..."
                         value={props.currentInput}
                         oninput={handleInput}
+                        onfocus={() => {
+                            setIsFocused(true);
+                        }}
+                        onblur={() => {
+                            setIsFocused(false);
+                        }}
                     ></input>
-                    <button onclick={handleClear}>
+                    <button
+                        onclick={handleClear}
+                        class={`transition-[opacity] duration-200 ${
+                            isFocused() ? "opacity-100" : "opacity-0"
+                        }`}
+                    >
                         <Clear />
                     </button>
                     <button
