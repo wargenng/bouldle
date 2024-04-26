@@ -1,34 +1,19 @@
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import Clear from "./assets/clear";
 import Chevron from "./assets/chevron";
 import Search from "./assets/search";
 
 export default function Select(props) {
     const [showDrawer, setShowDrawer] = createSignal(false);
-    const [currentInput, setCurrentInput] = createSignal("");
     const [data, setData] = createSignal(props.data);
 
-    const handleDrawer = () => {
-        setShowDrawer(!showDrawer());
-    };
-
-    const handleInput = (e) => {
-        props.setCurrentInput(e.target.value);
-        updateData(e.target.value);
-    };
-
-    const handleClear = () => {
-        props.setCurrentInput("");
-        updateData("");
-    };
-
-    const updateData = (input) => {
+    createEffect(() => {
         setData(
             props.data
                 .filter(
                     (group) =>
                         group.options.filter((child) =>
-                            [...new Set(input)].every((char) =>
+                            [...new Set(props.currentInput)].every((char) =>
                                 child.label
                                     .toLowerCase()
                                     .includes(char.toLowerCase())
@@ -39,7 +24,7 @@ export default function Select(props) {
                     return {
                         name: group.name,
                         options: group.options.filter((child) =>
-                            [...new Set(input)].every((char) =>
+                            [...new Set(props.currentInput)].every((char) =>
                                 child.label
                                     .toLowerCase()
                                     .includes(char.toLowerCase())
@@ -48,6 +33,18 @@ export default function Select(props) {
                     };
                 })
         );
+    });
+
+    const handleDrawer = () => {
+        setShowDrawer(!showDrawer());
+    };
+
+    const handleInput = (e) => {
+        props.setCurrentInput(e.target.value);
+    };
+
+    const handleClear = () => {
+        props.setCurrentInput("");
     };
 
     return (
