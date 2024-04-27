@@ -6,11 +6,15 @@ export default function Toolbar(props) {
         <div class="w-full grid grid-cols-12 justify-start px-6 my-4 text-lg font-bold">
             <div class="col-span-5">
                 Guess{" "}
-                {props.state === "won"
+                {!props.isAnimating
+                    ? props.state === "won"
+                        ? props.submittedGuessesLength
+                        : props.submittedGuessesLength < props.allowedGuesses
+                        ? props.submittedGuessesLength + 1
+                        : "X"
+                    : props.submittedGuessesLength === props.allowedGuesses
                     ? props.submittedGuessesLength
-                    : props.submittedGuessesLength < props.allowedGuesses
-                    ? props.submittedGuessesLength + 1
-                    : "X"}{" "}
+                    : props.submittedGuessesLength - 1}{" "}
                 of {props.allowedGuesses}
             </div>
             <div

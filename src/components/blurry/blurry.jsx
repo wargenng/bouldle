@@ -39,6 +39,7 @@ export default function Blurry(props) {
                 setShowImage={setShowImage}
                 setIsExpanded={setIsExpanded}
                 isExpanded={isExpanded()}
+                isAnimating={props.isAnimating}
             />
         </>
     );

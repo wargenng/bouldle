@@ -64,6 +64,7 @@ function App() {
                     state={state()}
                     submittedGuessesLength={submittedGuesses().length}
                     image={todaysClimb.image}
+                    isAnimating={isAnimating()}
                 />
                 {state() === "playing" || isAnimating() ? (
                     <Options
