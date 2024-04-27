@@ -68,7 +68,7 @@ export default function Select(props) {
                 </button>
             </div>
             <div
-                class={`w-screen h-screen fixed left-0 top-0 z-10 bg-background transition-[opacity] duration-300 ${
+                class={`w-screen h-screen fixed left-0 top-0 z-10 bg-black transition-opacity duration-300 ${
                     showDrawer()
                         ? "opacity-50 pointer-events-all"
                         : "opacity-0 pointer-events-none"
@@ -76,7 +76,7 @@ export default function Select(props) {
                 onclick={handleDrawer}
             />
             <div
-                class={`fixed left-0 w-screen h-2/3 bg-background rounded-t-lg transition-[bottom] duration-300 z-20 border-t border-primary/20 ${
+                class={`fixed w-screen h-2/3 bg-background rounded-t-lg transition-[bottom] duration-300 z-20 border-t border-primary/20 ${
                     showDrawer() ? "bottom-0" : "bottom-[-700px]"
                 }`}
             >
@@ -96,7 +96,7 @@ export default function Select(props) {
                     ></input>
                     <button
                         onclick={handleClear}
-                        class={`transition-[opacity] duration-200 ${
+                        class={`transition-opacity duration-200 ${
                             isFocused() ? "opacity-100" : "opacity-0"
                         }`}
                     >
@@ -104,7 +104,7 @@ export default function Select(props) {
                     </button>
                     <button
                         onclick={handleDrawer}
-                        class={`flex justify-center items-center transition-all duration-100 ${
+                        class={`flex justify-center items-center transition-transform duration-100 ${
                             showDrawer() ? "rotate-180" : "rotate-0"
                         }`}
                     >

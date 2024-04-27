@@ -10,18 +10,18 @@ export default function Information(props) {
 
     return (
         <div
-            class={`absolute w-full h-full z-10  transition-all duration-500 flex ${
+            class={`absolute w-full h-full z-10 flex ${
                 props.showDialog ? "pointer-events-all" : "pointer-events-none"
             } items-center justify-center`}
         >
             <div
-                class={`absolute w-screen h-screen bg-black ${
+                class={`absolute w-screen h-screen bg-black transition-opacity duration-500 ${
                     props.showDialog ? "opacity-50" : "opacity-0"
                 }`}
                 onclick={handleClose}
             />
             <div
-                class={`absolute w-5/6 bg-list-background rounded-lg shadow-md flex flex-col justify-center transition-all duration-500 ${
+                class={`absolute w-5/6 bg-list-background rounded-lg shadow-md flex flex-col justify-center transition-dimensions duration-500 ${
                     props.showDialog
                         ? "translate-y-0 opacity-100"
                         : "translate-y-10 opacity-0"

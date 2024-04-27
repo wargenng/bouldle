@@ -10,6 +10,10 @@ export default {
                 warn: "rgba(var(--warn))",
                 absent: "rgba(var(--absent))",
             },
+            transitionProperty: {
+                dimensions: "height, width",
+                animation: "transform, opacity",
+            },
         },
     },
     plugins: [],
