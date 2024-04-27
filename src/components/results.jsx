@@ -1,26 +1,24 @@
 import Share from "../assets/share";
-import Warn from "./warn";
 import { daysBetweenDates } from "../utilities/daysBetweenDates";
 import { getCurrentDateFormattedAsInt } from "../utilities/getCurrentDateFormattedAsInt";
 import { createSignal } from "solid-js";
 import { ConfettiExplosion } from "solid-confetti-explosion";
 
 export default function Results(props) {
-    const [showWarnTodayClimb, setShowWarnTodayClimb] = createSignal(false);
     const share = async () => {
         window.scrollTo(0, 0);
         try {
             await navigator.clipboard.writeText(
                 `bouldle #${daysBetweenDates(
                     "20240419",
-                    getCurrentDateFormattedAsInt().toString()
+                    getCurrentDateFormattedAsInt().toString(),
                 )} 🪨 ${
                     props.state === "won" ? props.submittedGuessesLength : "X"
                 }/${props.allowedGuesses} ${
                     props.state === "won"
                         ? "⬜".repeat(props.submittedGuessesLength - 1) + "🟩"
                         : "⬜".repeat(props.submittedGuessesLength)
-                } bouldle.com`
+                } bouldle.com`,
             );
             console.log("Text copied to clipboard successfully!");
             props.warn("text successfully copied!");
@@ -41,23 +39,12 @@ export default function Results(props) {
                     />
                 </div>
             ) : null}
-            <Warn
-                showWarn={showWarnTodayClimb()}
-                setShowWarn={setShowWarnTodayClimb}
-                route={props.todaysClimb.route}
-                link={props.todaysClimb.link}
-            />
             <div class={`text-2xl font-bold text-center mb-4 px-4`}>
                 {props.state === "won" ? "you won!" : "you lost!"}{" "}
                 {`the climb is: `}
-                <span
-                    class="underline"
-                    onclick={() => {
-                        setShowWarnTodayClimb(true);
-                    }}
-                >
+                <a class="underline" href={props.todaysClimb.link}>
                     {props.todaysClimb.route}
-                </span>
+                </a>
             </div>
             <div class="w-full flex justify-center">
                 <button
