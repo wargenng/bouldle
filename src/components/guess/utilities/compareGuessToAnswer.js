@@ -30,6 +30,15 @@ export function compareGuessToAnswer(guess, todaysClimb) {
                     : ""
             }`,
             defaultValue: guess.grade,
+            score:
+                todaysClimb.grade === guess.grade
+                    ? 2
+                    : Math.abs(
+                          gradeData.grades.indexOf(todaysClimb.grade) -
+                              gradeData.grades.indexOf(guess.grade)
+                      ) <= 4
+                    ? 1
+                    : 0,
         },
         {
             title: "length",
@@ -50,6 +59,13 @@ export function compareGuessToAnswer(guess, todaysClimb) {
                     : "▼"
             }`,
             defaultValue: guess.length === "" ? "N/A" : guess.length + " ft",
+            score:
+                todaysClimb.length === guess.length
+                    ? 2
+                    : todaysClimb.length + 2 > guess.length &&
+                      todaysClimb.length - 2 < guess.length
+                    ? 1
+                    : 0,
         },
         {
             title: "distance",
@@ -61,6 +77,7 @@ export function compareGuessToAnswer(guess, todaysClimb) {
             value: `${distance.distance} ${distance.unit} 
         ${distance.distance > 0 ? distance.direction : ""}`,
             defaultValue: "???",
+            score: distance.distance === 0 ? 2 : distance.unit === "ft" ? 1 : 0,
         },
         {
             title: "area",
@@ -68,6 +85,7 @@ export function compareGuessToAnswer(guess, todaysClimb) {
             bgColor: findBgColor(todaysClimb.area === guess.area, false),
             value: guess.area,
             defaultValue: guess.area,
+            score: todaysClimb.area === guess.area ? 2 : 0,
         },
         {
             title: "stars",
@@ -86,6 +104,13 @@ export function compareGuessToAnswer(guess, todaysClimb) {
                     : ""
             }`,
             defaultValue: guess.stars,
+            score:
+                todaysClimb.stars === guess.stars
+                    ? 2
+                    : guess.stars < todaysClimb.stars + 0.5 &&
+                      guess.stars > todaysClimb.stars - 0.5
+                    ? 1
+                    : 0,
         },
         {
             title: "votes",
@@ -104,6 +129,13 @@ export function compareGuessToAnswer(guess, todaysClimb) {
                     : ""
             }`,
             defaultValue: guess.votes,
+            score:
+                todaysClimb.votes === guess.votes
+                    ? 2
+                    : todaysClimb.votes + 50 > guess.votes &&
+                      todaysClimb.votes - 50 < guess.votes
+                    ? 1
+                    : 0,
         },
     ];
 

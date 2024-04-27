@@ -15,7 +15,7 @@ export const setToast = async (warn) => {
 export function Toast() {
     return (
         <div
-            class={`absolute pointer-events-none rounded-lg overflow-hidden transition-transform ${
+            class={`absolute pointer-events-none rounded-lg overflow-hidden transition-transform duration-200 ${
                 showToast() ? "translate-y-3" : "translate-y-[-4rem]"
             }`}
         >

@@ -4,6 +4,8 @@ import { createSignal, onMount } from "solid-js";
 import Details from "./components/details";
 import { compareGuessToAnswer } from "./utilities/compareGuessToAnswer";
 import { delay } from "../../utilities/delay";
+import { setToast } from "../toast";
+import { messages } from "./utilities/messages";
 
 export default function Guess(props) {
     const guess =
@@ -18,6 +20,8 @@ export default function Guess(props) {
     const [isAnimated, setIsAnimated] = createSignal(
         Array.from({ length: details.length }, () => false)
     );
+    console.log(details.reduce((x, detail) => x + parseInt(detail.score), 0));
+    console.log(details.map((detail) => detail.score));
 
     onMount(async () => {
         if (
@@ -41,6 +45,14 @@ export default function Guess(props) {
             );
         }
         await delay(300);
+        setToast(
+            messages(
+                JSON.parse(
+                    localStorage.getItem(String(getCurrentDateFormattedAsInt()))
+                ).length,
+                details.reduce((x, detail) => x + parseInt(detail.score), 0)
+            )
+        );
         props.setIsAnimating(false);
     });
 
