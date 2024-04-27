@@ -12,9 +12,7 @@ export default function Toolbar(props) {
                         : props.submittedGuessesLength < props.allowedGuesses
                         ? props.submittedGuessesLength + 1
                         : "X"
-                    : props.submittedGuessesLength === props.allowedGuesses
-                    ? props.submittedGuessesLength
-                    : props.submittedGuessesLength - 1}{" "}
+                    : props.submittedGuessesLength}{" "}
                 of {props.allowedGuesses}
             </div>
             <div
