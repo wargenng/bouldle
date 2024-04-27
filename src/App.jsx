@@ -23,10 +23,14 @@ const todaysClimb =
             )
         )
     ];
+const firstVisitKey = "firstVisit";
 
 function App() {
     const [submittedGuesses, setSubmittedGuesses] = createSignal([]);
-    const [showDialog, setShowDialog] = createSignal(true);
+    const [showDialog, setShowDialog] = createSignal(
+        !localStorage[firstVisitKey],
+    );
+    localStorage[firstVisitKey] = new Date().getTime();
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
