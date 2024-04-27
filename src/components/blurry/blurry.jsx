@@ -23,7 +23,7 @@ export default function Blurry(props) {
                 >
                     <img
                         class={`min-w-full ${
-                            props.state !== "playing"
+                            props.state !== "playing" && !props.isAnimating
                                 ? "blur-[0px]"
                                 : blurAmountList[props.submittedGuessesLength]
                         }`}
