@@ -27,14 +27,14 @@ const todaysClimb =
 const firstVisitKey = "firstVisit";
 const todaysKey = String(getCurrentDateFormattedAsInt());
 
-
 function App() {
     const [submittedGuesses, setSubmittedGuesses] = createSignal(
-        JSON.parse(localStorage.getItem(todaysKey)) || [],
+        JSON.parse(localStorage.getItem(todaysKey)) || []
     );
     const [showDialog, setShowDialog] = createSignal(
-        !localStorage[firstVisitKey],
+        !localStorage[firstVisitKey]
     );
+    const [isAnimating, setIsAnimating] = createSignal(false);
     localStorage[firstVisitKey] = new Date().getTime();
 
     createEffect(() => {
@@ -65,12 +65,13 @@ function App() {
                     submittedGuessesLength={submittedGuesses().length}
                     image={todaysClimb.image}
                 />
-                {state() === "playing" ? (
+                {state() === "playing" || isAnimating() ? (
                     <Options
                         state={state()}
                         warn={setToast}
                         submittedGuesses={submittedGuesses()}
                         setSubmittedGuesses={setSubmittedGuesses}
+                        isAnimating={isAnimating()}
                     />
                 ) : (
                     <Results
@@ -83,8 +84,13 @@ function App() {
                 )}
                 <div class="py-4">
                     {submittedGuesses()
-                        .map((guess) => (
-                            <Guess guess={guess} todaysClimb={todaysClimb} />
+                        .map((guess, i) => (
+                            <Guess
+                                guess={guess}
+                                todaysClimb={todaysClimb}
+                                guessId={i + 1}
+                                setIsAnimating={setIsAnimating}
+                            />
                         ))
                         .reverse()}
                 </div>

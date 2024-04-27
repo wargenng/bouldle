@@ -1,9 +1,9 @@
 import climbData from "../../../scripts/data.json";
-import { random } from "../../utilities/random";
 import { getCurrentDateFormattedAsInt } from "../../utilities/getCurrentDateFormattedAsInt";
-import { createSignal } from "solid-js";
+import { createSignal, onMount } from "solid-js";
 import Details from "./components/details";
 import { compareGuessToAnswer } from "./utilities/compareGuessToAnswer";
+import { delay } from "../../utilities/delay";
 
 export default function Guess(props) {
     const guess =
@@ -12,6 +12,37 @@ export default function Guess(props) {
         ];
 
     const details = compareGuessToAnswer(guess, props.todaysClimb);
+    const [isMount, setIsMount] = createSignal(
+        Array.from({ length: details.length }, () => false)
+    );
+    const [isAnimated, setIsAnimated] = createSignal(
+        Array.from({ length: details.length }, () => false)
+    );
+
+    onMount(async () => {
+        if (
+            JSON.parse(
+                localStorage.getItem(String(getCurrentDateFormattedAsInt()))
+            ).at(-1) !== props.guess
+        ) {
+            setIsAnimated(Array.from({ length: details.length }, () => true));
+            return;
+        }
+        props.setIsAnimating(true);
+        await delay(500);
+
+        for (let i = 0; i < 6; i++) {
+            setIsMount(
+                isMount().map((bool, index) => (index === i ? true : bool))
+            );
+            await delay(300);
+            setIsAnimated(
+                isAnimated().map((bool, index) => (index === i ? true : bool))
+            );
+        }
+        await delay(300);
+        props.setIsAnimating(false);
+    });
 
     return (
         <div class="text-white px-6">
@@ -31,12 +62,14 @@ export default function Guess(props) {
                     </a>
                 </div>
                 <div class="grid grid-cols-12 gap-3">
-                    {details.map((detail) => (
+                    {details.map((detail, i) => (
                         <Details
                             title={detail.title}
                             colSpan={detail.colSpan}
                             bgColor={detail.bgColor}
                             value={detail.value}
+                            isAnimated={isAnimated()[i]}
+                            isMount={isMount()[i]}
                         />
                     ))}
                 </div>
