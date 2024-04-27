@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { getCurrentDateFormattedAsInt } from "./utilities/getCurrentDateFormattedAsInt";
 import { random } from "./utilities/random";
 import climbData from "../scripts/data.json";
@@ -23,10 +23,17 @@ const todaysClimb =
             )
         )
     ];
+const todaysKey = String(getCurrentDateFormattedAsInt());
 
 function App() {
-    const [submittedGuesses, setSubmittedGuesses] = createSignal([]);
+    const [submittedGuesses, setSubmittedGuesses] = createSignal(
+        JSON.parse(localStorage.getItem(todaysKey)) || [],
+    );
     const [showDialog, setShowDialog] = createSignal(true);
+
+    createEffect(() => {
+        localStorage.setItem(todaysKey, JSON.stringify(submittedGuesses()));
+    });
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
