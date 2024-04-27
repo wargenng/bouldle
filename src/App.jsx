@@ -23,13 +23,19 @@ const todaysClimb =
             )
         )
     ];
+
+const firstVisitKey = "firstVisit";
 const todaysKey = String(getCurrentDateFormattedAsInt());
+
 
 function App() {
     const [submittedGuesses, setSubmittedGuesses] = createSignal(
         JSON.parse(localStorage.getItem(todaysKey)) || [],
     );
-    const [showDialog, setShowDialog] = createSignal(true);
+    const [showDialog, setShowDialog] = createSignal(
+        !localStorage[firstVisitKey],
+    );
+    localStorage[firstVisitKey] = new Date().getTime();
 
     createEffect(() => {
         localStorage.setItem(todaysKey, JSON.stringify(submittedGuesses()));
