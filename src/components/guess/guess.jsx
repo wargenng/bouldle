@@ -68,6 +68,7 @@ export default function Guess(props) {
                             colSpan={detail.colSpan}
                             bgColor={detail.bgColor}
                             value={detail.value}
+                            defaultValue={detail.defaultValue}
                             isAnimated={isAnimated()[i]}
                             isMount={isMount()[i]}
                         />

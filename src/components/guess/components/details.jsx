@@ -13,7 +13,9 @@ export default function Details(props) {
         >
             <div class="text-sm font-medium">{props.title}</div>
             <div class="text-lg font-bold h-full flex items-center">
-                {props.value}
+                {props.isAnimated || props.isMount
+                    ? props.value
+                    : props.defaultValue}
             </div>
         </div>
     );

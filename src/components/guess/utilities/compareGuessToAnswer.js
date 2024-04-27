@@ -29,6 +29,7 @@ export function compareGuessToAnswer(guess, todaysClimb) {
                         : "▼"
                     : ""
             }`,
+            defaultValue: guess.grade,
         },
         {
             title: "length",
@@ -48,6 +49,7 @@ export function compareGuessToAnswer(guess, todaysClimb) {
                     ? "▲"
                     : "▼"
             }`,
+            defaultValue: guess.length === "" ? "N/A" : guess.length + " ft",
         },
         {
             title: "distance",
@@ -58,12 +60,14 @@ export function compareGuessToAnswer(guess, todaysClimb) {
             ),
             value: `${distance.distance} ${distance.unit} 
         ${distance.distance > 0 ? distance.direction : ""}`,
+            defaultValue: "???",
         },
         {
             title: "area",
             colSpan: "col-span-5",
             bgColor: findBgColor(todaysClimb.area === guess.area, false),
             value: guess.area,
+            defaultValue: guess.area,
         },
         {
             title: "stars",
@@ -81,6 +85,7 @@ export function compareGuessToAnswer(guess, todaysClimb) {
                         : "▼"
                     : ""
             }`,
+            defaultValue: guess.stars,
         },
         {
             title: "votes",
@@ -98,6 +103,7 @@ export function compareGuessToAnswer(guess, todaysClimb) {
                         : "▼"
                     : ""
             }`,
+            defaultValue: guess.votes,
         },
     ];
 
