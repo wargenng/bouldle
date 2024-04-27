@@ -111,7 +111,7 @@ export default function Select(props) {
                         <Chevron />
                     </button>
                 </div>
-                <div class="max-h-full overflow-auto px-4 flex flex-col items-start">
+                <div class="h-5/6 overflow-auto px-4 flex flex-col items-start">
                     {data().length > 0 ? (
                         data().map((area) => {
                             return (
