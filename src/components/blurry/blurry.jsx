@@ -1,12 +1,13 @@
 import { createSignal } from "solid-js";
 import { blurAmountList } from "../../utilities/blurAmountList";
 import Toolbar from "./components/toolbar";
+import createPersisted from "../../utilities/createPersisted";
 
 const allowedGuesses = blurAmountList.length;
 
 export default function Blurry(props) {
-    const [showImage, setShowImage] = createSignal(true);
-    const [isExpanded, setIsExpanded] = createSignal(false);
+    const [showImage, setShowImage] = createPersisted("imageShown", true);
+    const [isExpanded, setIsExpanded] = createPersisted("imageExpanded", false);
     return (
         <>
             <div class={`w-full items-center justify-center my-4 flex`}>
