@@ -13,6 +13,7 @@ import Blurry from "./components/blurry/blurry";
 import Results from "./components/results";
 import { setToast, Toast } from "./components/toast";
 import Information from "./components/information/information";
+import createPersisted from "./utilities/createPersisted";
 
 const allowedGuesses = blurAmountList.length;
 const todaysClimb =
@@ -25,21 +26,17 @@ const todaysClimb =
     ];
 
 const firstVisitKey = "firstVisit";
-const todaysKey = String(getCurrentDateFormattedAsInt());
 
 function App() {
-    const [submittedGuesses, setSubmittedGuesses] = createSignal(
-        JSON.parse(localStorage.getItem(todaysKey)) || []
+    const [submittedGuesses, setSubmittedGuesses] = createPersisted(
+        String(getCurrentDateFormattedAsInt()),
+        [],
     );
     const [showDialog, setShowDialog] = createSignal(
         !localStorage[firstVisitKey]
     );
     const [isAnimating, setIsAnimating] = createSignal(false);
     localStorage[firstVisitKey] = new Date().getTime();
-
-    createEffect(() => {
-        localStorage.setItem(todaysKey, JSON.stringify(submittedGuesses()));
-    });
 
     const state = () => {
         const lastGuess = submittedGuesses().at(-1);
