@@ -41,6 +41,12 @@ def get_area(location):
             log.write("no location found for: ")
             log.write(location + "\n")
 
+def get_description(URL):
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    element = soup.find(lambda desc: desc.has_attr('class') and "fr-view" in desc['class']).get_text(strip=True)
+    return element
+
 all_climbs = []
 
 for data in data_list:
@@ -55,7 +61,9 @@ for data in data_list:
         "latitude": data["Area Latitude"],
         "longitude": data["Area Longitude"],
         "image": get_climb_img(data["URL"]),
-        "link": data["URL"]
+        "link": data["URL"],
+        "label": data["Route"] + " " + data["Rating"],
+        "description": get_description(data["URL"])
     })
 
 result = {"climbs": all_climbs}
