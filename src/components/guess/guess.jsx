@@ -63,7 +63,7 @@ export default function Guess(props) {
                     <div class="h-20 w-20 rounded-full overflow-hidden object-cover flex items-center justify-center">
                         <img
                             src={guess.image}
-                            class="min-w-full min-h-full shrink"
+                            class="min-w-full min-h-full shrink object-cover"
                         />
                     </div>
                     <a
