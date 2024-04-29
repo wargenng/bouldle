@@ -21,7 +21,7 @@ export default function Information(props) {
                 onclick={handleClose}
             />
             <div
-                class={`absolute w-5/6 bg-list-background rounded-lg shadow-md flex flex-col justify-center transition-dimensions duration-500 ${
+                class={`absolute w-5/6 bg-list-background rounded-lg shadow-md flex flex-col justify-center transition-animation duration-500 ${
                     props.showDialog
                         ? "translate-y-0 opacity-100"
                         : "translate-y-10 opacity-0"
