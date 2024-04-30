@@ -7,7 +7,6 @@ export default function Details(props) {
         onMount(async () => {
             await delay(props.delay)
             setShowResult(true);
-            props.onAnimateEnd && props.onAnimateEnd();
         })
     }
     return (
