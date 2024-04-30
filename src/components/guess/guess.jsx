@@ -17,6 +17,7 @@ export default function Guess(props) {
 
     if (isMostRecentGuess) {
         onMount(async () => {
+            props.setIsAnimating(true);
             await delay(calcDelay(details.length) + 300);
             setToast(
                 messages(
@@ -24,6 +25,7 @@ export default function Guess(props) {
                     details.reduce((x, detail) => x + parseInt(detail.score), 0)
                 )
             );
+            props.setIsAnimating(false);
         })
     }
 
