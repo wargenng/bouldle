@@ -86,8 +86,9 @@ function App() {
                             <Guess
                                 guess={guess}
                                 todaysClimb={todaysClimb}
-                                guessId={i + 1}
                                 setIsAnimating={setIsAnimating}
+                                guessNumber={i + 1}
+                                totalGuesses={submittedGuesses().length}
                             />
                         ))
                         .reverse()}
