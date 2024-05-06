@@ -9,11 +9,11 @@ import { messages } from "./utilities/messages";
 export default function Guess(props) {
     const guess =
         climbData.climbs[
-        climbData.climbs.map((climb) => climb.route).indexOf(props.guess)
+            climbData.climbs.map((climb) => climb.route).indexOf(props.guess)
         ];
     const details = compareGuessToAnswer(guess, props.todaysClimb);
     const isMostRecentGuess = props.guessNumber === props.totalGuesses;
-    const calcDelay = (i) => 500 + i * 300
+    const calcDelay = (i) => 500 + i * 300;
 
     if (isMostRecentGuess) {
         onMount(async () => {
@@ -26,39 +26,37 @@ export default function Guess(props) {
                 )
             );
             props.setIsAnimating(false);
-        })
+        });
     }
 
     return (
-        <div class="text-white px-6">
-            <div class=" text-center mb-5">
-                <div class="flex items-center gap-4 mb-3">
-                    <div class="h-20 w-20 rounded-full overflow-hidden object-cover flex items-center justify-center">
-                        <img
-                            src={guess.image}
-                            class="min-w-full min-h-full shrink object-cover"
-                        />
-                    </div>
-                    <a
-                        class="text-xl font-bold underline text-primary"
-                        href={guess.link}
-                    >
-                        {guess.route}
-                    </a>
+        <div class="px-6 text-center mb-5">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="h-20 w-20 rounded-full overflow-hidden object-cover flex items-center justify-center">
+                    <img
+                        src={guess.image}
+                        class="min-w-full min-h-full shrink object-cover"
+                    />
                 </div>
-                <div class="grid grid-cols-12 gap-3">
-                    {details.map((detail, i) => (
-                        <Details
-                            title={detail.title}
-                            colSpan={detail.colSpan}
-                            bgColor={detail.bgColor}
-                            value={detail.value}
-                            defaultValue={detail.defaultValue}
-                            shouldAnimate={isMostRecentGuess}
-                            delay={500 + i * 300}
-                        />
-                    ))}
-                </div>
+                <a
+                    class="text-xl font-bold underline text-primary"
+                    href={guess.link}
+                >
+                    {guess.route}
+                </a>
+            </div>
+            <div class="grid grid-cols-12 gap-3">
+                {details.map((detail, i) => (
+                    <Details
+                        title={detail.title}
+                        colSpan={detail.colSpan}
+                        bgColor={detail.bgColor}
+                        value={detail.value}
+                        defaultValue={detail.defaultValue}
+                        shouldAnimate={isMostRecentGuess}
+                        delay={500 + i * 300}
+                    />
+                ))}
             </div>
         </div>
     );
